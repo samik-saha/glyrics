@@ -1,0 +1,56 @@
+div
+{
+	font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+}
+
+#lyrics-container
+{
+	color: blue;
+	position: fixed;
+	top: 200px;
+	left: 500px;
+	background-color: #CCFFCC;
+	padding: 0px;
+	border: solid 2px #009999;
+	opacity: 0.9;
+	z-index: 2000;
+	max-height: 80%;
+	max-width: 80%;
+	min-width: 200px;
+	min-height: 50px;
+    display: inline-block;
+}
+#lyrics-topbar
+{
+	color:white;
+	background-color: #009999;
+	height: 20px;
+	cursor: move;
+	font-size:14px;
+	padding: 5px;
+}
+#lyrics-header
+{
+	text-wrap:none;
+	overflow:hidden;
+}
+
+#lyrics-text
+{
+    color: #1D3E3E;
+	padding: 5px;
+	font-size: 14px;
+	text-wrap: normal;
+	overflow-y: auto;
+	display: inline-block;
+	position: absolute;
+	top: 30px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+}
+
+#lyrics-close-btn,#lyrics-reload-btn
+{
+	cursor:pointer;
+}

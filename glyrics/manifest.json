@@ -4,7 +4,7 @@
   "name": "Gaana Lyrics",
   "short_name": "GLyrics",
   "description": "Displays lyrics on Gaana.com",
-  "version": "2.2",
+  "version": "2.3",
   "author": "Samik Saha",
   "icons": {
 	  "64":"icon64.png",

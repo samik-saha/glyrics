@@ -3,6 +3,11 @@ div
 	font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
 }
 
+ol
+{
+	list-style-type:decimal
+}
+
 #lyrics-container
 {
 	color: blue;
@@ -31,8 +36,9 @@ div
 }
 #lyrics-header
 {
-	text-wrap:none;
-	overflow:hidden;
+	white-space:nowrap;
+	overflow-x:hidden;
+	max-width:100px;
 }
 
 #lyrics-text
@@ -40,7 +46,6 @@ div
     color: #1D3E3E;
 	padding: 5px;
 	font-size: 14px;
-	text-wrap: normal;
 	overflow-y: auto;
 	display: inline-block;
 	position: absolute;

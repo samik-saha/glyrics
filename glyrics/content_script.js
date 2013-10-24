@@ -112,7 +112,13 @@ function fetchTrackInfo(){
   artists = '';
 
   div_trackInfo = document.getElementById('trackInfo');
-  songName = div_trackInfo.getElementsByTagName('span')[0].innerHTML.trim();
+  
+  //For old interface
+  if (div_trackInfo.firstChild.className === "fl songInfo rgtSeprator ellipsis"){	  
+	  songName = div_trackInfo.getElementsByTagName('span')[0].innerHTML.trim()
+  } else {
+  	songName = div_trackInfo.firstChild.nodeValue;
+  }
   a_elements = div_trackInfo.getElementsByTagName('*');
   for (i = 0; i < a_elements.length; i++) {
 	a = a_elements[i];

@@ -8,6 +8,16 @@ ol
 	list-style-type:decimal
 }
 
+hr.glyrics
+{
+	margin: 0px 0;
+}
+
+br.glyrics
+{
+	padding: 0px;
+}
+
 #lyrics-container
 {
 	color: blue;

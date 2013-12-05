@@ -6,7 +6,7 @@ chrome.runtime.onMessage.addListener(
 	}
   });
   
-  
+
 function showLyrics(){
   window.trackChangeInterval = setInterval(function(){checkTrackChange();},3000);
 
@@ -15,6 +15,8 @@ function showLyrics(){
   window.firstArtist = '';
   window.artists = '';
   window.lwSearchResults = [];
+  window.lyricArtist = ''; //Arist of displayed lyric
+  window.lyricTitle = ''; //Title of the displayed lyric
 
   //Add a lyrics component in Gaana.com page
   window.div=document.getElementById('lyrics-container');
@@ -62,8 +64,8 @@ function showLyrics(){
 	
 	window.lyricsHeader=document.getElementById("lyrics-header");
 	
-	document.getElementById("lyrics-close-btn").src=chrome.extension.getURL("Close-16.png");
-	document.getElementById("lyrics-reload-btn").src=chrome.extension.getURL("Refresh-16.png");
+	document.getElementById("lyrics-close-btn").src=chrome.extension.getURL("images/Close-16.png");
+	document.getElementById("lyrics-reload-btn").src=chrome.extension.getURL("images/Refresh-16.png");
 	
 	$(function() {
       $( "#lyrics-container" ).resizable();
@@ -104,55 +106,12 @@ function divMove(e){
 }
 
 
-//Get song information from Gaana.com page
-function fetchTrackInfo(){
-  songName = '';
-  album = '';
-  firstArtist = '';
-  artists = '';
-
-  div_trackInfo = document.getElementById('trackInfo');
-  
-  if (div_trackInfo.children.length == 0){
-	  lyricsTextDiv.innerHTML="No track is playing!";
-	  return;
-  }
-  
-  //For old interface
-  if (div_trackInfo.firstChild.className == "fl songInfo rgtSeprator ellipsis"){	  
-	  songName = div_trackInfo.getElementsByTagName('span')[0].innerHTML.trim()
-	  a_elements = div_trackInfo.getElementsByTagName('*');
-	for (i = 0; i < a_elements.length; i++) {
-		a = a_elements[i];
-		if (a.className == 'albumNamePl') album = a.innerHTML.trim();
-		if (a.className == 'artistName'){
-			artists = artists + a.innerHTML.trim() + ",";
-	}
-  	}
-  	firstArtist = artists.substr(0, artists.indexOf(',')).trim();
-  	artists = artists.substr(0, artists.length - 1);
-  } else {
-	  //For Radio Mirchi
-	  songNames = div_trackInfo.getElementsByClassName("songName");
-	  if (songNames.length > 0){
-		  songName = songNames[0].innerText.trim();
-		  albumElement = div_trackInfo.getElementsByClassName("albumNamePl");
-		  album = (albumElement.length > 0)?albumElement[0].innerText.trim():"";
-	  }else {
-		  //Gaana.com default
-		  songName = div_trackInfo.firstChild.nodeValue.trim();
-		  album = div_trackInfo.getElementsByClassName("albumNamePl white pjax")[0].innerText.trim();
-	  }
-  }
-  
-}
-
 function checkTrackChange(){
   prevSongName=songName;
   fetchTrackInfo();
   if (songName != prevSongName){
     console.log('Track Change!');
-	lyricsHeader.innerHTML="Lyrics | "+songName;
+	lyricsHeader.innerHTML="Lyrics | " + songName;
 	getLyrics(firstArtist, songName, album);
   }
 }
@@ -204,8 +163,13 @@ function searchOnLiricWiki(title){
 						lwSearchResults[i] = result;
 						i++;
 						result.onclick=function(){
-						  event.returnValue=false;
-						  getLyricsFromLyricWikiURL(event.srcElement.getAttribute('href'));
+							//do not follow the link
+							event.returnValue=false;
+						  	//Set lyricArtist and lyricTitle to be displayed on header
+						  	elementText = event.srcElement.innerText;
+						  	lyricArtist = elementText.substr(0,elementText.indexOf(':'));
+						  	lyricTitle = elementText.substr(elementText.indexOf(':')+1);
+						  	getLyricsFromLyricWikiURL(event.srcElement.getAttribute('href'));
 						};
 					}
 				}
@@ -227,9 +191,17 @@ function searchOnLiricWiki(title){
 			  	}	
 			}
 			
-			if (lwSearchResults.length == 1 && lwSearchResults[0].innerHTML.substr(lwSearchResults[0].innerHTML.indexOf(':')+1).trim().toLowerCase() === title.toLowerCase()){
+			//If only one result returned and the song title matches exactly, then fetch lyrics from the page immediately
+			/*
+			if (lwSearchResults.length == 1 && lwSearchResults[0].innerHTML.substr(lwSearchResults[0].innerHTML.indexOf(':')+1).trim().toLowerCase() === title.toLowerCase()){			
+				//Set lyricArtist and lyricTitle to be displayed on header
+				elementText = lwSearchResults[0].innerHTML;
+				lyricArtist = elementText.substr(0,elementText.indexOf(':'));
+			    lyricTitle = elementText.substr(elementText.indexOf(':')+1);
+				
 			  	getLyricsFromLyricWikiURL(lwSearchResults[0].getAttribute('href'));
 			}
+			*/
            
           }
         });
@@ -247,19 +219,20 @@ function getLyrics(artist, title, album) {
 	
 	//If artist is missing try to get artist name from MusicBrainz
 	if (!artist){
-	  lyricsTextDiv.innerHTML = 'Artist is missing. Searching for Artist Name on MusicBrainz...';
+	  lyricsTextDiv.innerHTML = 'Artist is missing! Searching for Artist Name on MusicBrainz...';
 	  getArtistFromMusicBrainz(title, album);
 	  return;
 	}
 	
 	//Artist could not be retrieved from MusicBrainz as well
 	if (artist == 'Not Found'){
-		lyricsTextDiv.innerHTML='Artist is missing! Cannot locate lyrics for <b>'+title+'</b>\
+		lyricsTextDiv.innerHTML='Artist not found! Cannot locate lyrics for <b>'+title+'</b>\
 		  (<a target="_blank" href="https://www.google.com/search?q='+title+' lyrics"><u>Search Google</u></a>).';
 		  searchOnLiricWiki(title)
 		return;
 	}  
 	
+	lyricsHeader.innerHTML="Lyrics | " + title + ' <em>by</em> ' + artist;
 	lyricsTextDiv.innerHTML='Searching lyrics for "'+title+'" by "' + artist + '" ...';
 	
 	$.ajax({
@@ -299,6 +272,8 @@ function getLyrics(artist, title, album) {
 		  throw new Error('Lyrics not found');
 		}
 		
+		lyricArtist = artist;
+		lyricTitle = title;
 		getLyricsFromLyricWikiURL(songURL)
 	
 	  } catch(err) {
@@ -325,7 +300,7 @@ function getLyricsFromLyricWikiURL(songURL){
 		  throw('No lyrics found');
 		} else{
 		  lyricsTextDiv.innerHTML = lyrics + '<br class="glyrics"><br class="glyrics"><hr class="glyrics">Lyrics provided by <a href="'+songURL+'" target="_blank">LyricWiki</a>.';
-		  
+		  lyricsHeader.innerHTML='Lyrics | ' + lyricTitle + ' <em>by</em> ' + lyricArtist;
 		}         
 	  }
 	});
@@ -358,7 +333,7 @@ function getArtistFromMusicBrainz(title, album){
 		type: "GET",
 		error: function(jqXHR, textStatus, errorThrown){
 			console.log("Error calling MusicBrainz api!");
-			getLyrics('Not Found',title, album);
+			lyricsTextDiv.innerHTML = 'An error occurred while searching artist on MusicBrainz for "'+title+'". Please retry.';
 		},
 		success: function(data, status){
 			artistCredit = $(data).find("artist-credit");
@@ -381,5 +356,7 @@ function getSongInfoFromRawHtml(data){
 
 
 function reload(){
+	songName="";
+	fetchTrackInfo();
 	getLyrics(firstArtist, songName, album);
 }

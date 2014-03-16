@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <title>Gaana Lyrics Options</title>
+    <link href="options.css" rel="stylesheet" type="text/css">
+    <script src="../jquery-2.0.3.min.js"></script>
+  </head>
+  <body>
+    <h1 class="rotate">Gaana Lyrics</h1>
+    <div id="content">
+        <h2>Options</h2>
+        <hr/>
+        <div id="optionsContainer">
+            <div>
+            <span class='option-label'>Theme Color</span>
+            <div id="colorList">
+                <div class="colorbox green selected" themeClass="theme-green"></div>
+                <div class="colorbox orange" themeClass="theme-orange"></div>
+            </div>
+            </div>
+            <div>
+              <span class='option-label'>Font</span>
+              <div  id="fontList">
+				<div class="font-item selected" fontClass="Default">Default</div>
+                <div class="font-item Pacifico" fontClass="Pacifico">Pacifico</div>
+                <div class="font-item Roboto" fontClass="Roboto">Roboto</div>
+              </div>
+            </div>
+			
+			<br><br><br>
+        </div>
+    
+        <div id="previewPane" class="theme-green">
+            <div id="lyrics-container">
+              <div id="lyrics-topbar">
+			  Lyrics
+              </div>
+              <div id="lyrics-text">
+              Lorem ipsum dolor sit amet<br>
+              consectetur adipisicing elit<br>
+              sed do eiusmod tempor incididunt ut<br>
+			  labore et dolore magna aliqua
+              </div>
+            </div>
+        </div>
+        
+        <div  id="status"></div>
+        <button  id="save">Save</button>
+    </div>
+    
+    
+  </body>
+  <script  src="options.js"></script>
+</html>

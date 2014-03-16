@@ -1,0 +1,129 @@
+@charset "utf-8";
+@import url(http://fonts.googleapis.com/css?family=Pacifico|Josefin+Sans);
+/* CSS Document */
+
+h1 {
+	background-color: orange;
+	display: block;
+	position: fixed;
+	text-align: left;
+	top: 88px;
+	left: -110px;
+	padding-left: 20px;
+	padding-bottom: 5px;
+	width: 240px;
+}
+
+.rotate {
+	/* Safari */
+	-webkit-transform: rotate(-90deg);
+	
+	/* Firefox */
+	-moz-transform: rotate(-90deg);
+	
+	/* IE */
+	-ms-transform: rotate(-90deg);
+	
+	/* Opera */
+	-o-transform: rotate(-90deg);
+	transform: rotate(-90deg);
+	/* Internet Explorer */
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+
+}
+
+#content{
+	width:600px;
+	margin-left:60px;
+	vertical-align: top;
+}
+
+#optionsContainer {
+	display: inline-block;
+}
+
+#previewPane {
+	margin-left: 50px;
+	margin-top: 10px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.colorbox {
+	width:60px;
+	height: 10px;
+	padding: 5px 5px 5px 5px;
+	border: 1px solid black;
+	display: inline-block;
+	margin: 2px 2px 2px 2px;
+	cursor:pointer;
+}
+
+.green {
+	background-color: green;
+}
+
+.orange {
+	background-color: orange;
+}
+
+.font-item {
+	padding: 5px 5px 5px 5px;
+	border: 1px solid black;
+	display: inline-block;
+	margin: 2px 2px 2px 2px;
+	cursor:pointer;
+}
+.Pacifico{
+	font-family:'Pacifico', cursive;
+}
+
+.Roboto {
+	font-family:'Roboto', sans-serif;
+}
+
+
+.selected {
+	border: 3px solid blue;
+}
+
+
+
+#lyrics-container
+{
+    border: solid 2px;
+}
+#lyrics-topbar{
+	padding: 5px 5px 5px 5px;
+}
+
+.theme-orange #lyrics-container 
+{
+	color: #A64B00;
+	background-color: #F5DA81;
+    border-color: #FE9A2E;
+}
+
+.theme-green #lyrics-container 
+{
+	color: blue;
+	background-color: #CCFFCC;
+    border-color: #009999;
+}
+
+.theme-orange #lyrics-topbar 
+{
+	color:white;
+	background-color: #FE9A2E; 
+}
+
+.theme-green #lyrics-topbar
+{
+	color:white;
+	background-color: #009999; 
+}
+
+#lyrics-text
+{
+	padding: 5px;
+}

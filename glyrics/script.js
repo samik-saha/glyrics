@@ -1,50 +1,81 @@
+window.isLyricWindowVisible = false;
+
+/* Set Up a Message Listener */
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
-    if (request.message == "ShowLyrics"){
+	if (request.message === "ShowLyrics"){
 	  //console.log("Lyrics button clicked. Message received by content script!");
-      showLyrics();
+	  themeClass = request.themeClass;
+	  fontClass = request.fontClass;
+	  if(isLyricWindowVisible) closeLyricsWindow();
+	  showLyrics();
+	}
+	else if (request.msgType === "songURL"){
+		getLyricsFromLyricWikiURL(request.url);
+		lyricArtist = firstArtist;
+		lyricTitle = songName;
+		
+	}
+	else if (request.msgType === "displayError"){
+		lyricsTextDiv.innerHTML = request.message;
+		if (request.msgAction == 'searchOnLyricWiki'){
+			searchOnLiricWiki(songName);
+		}
 	}
   });
-  
 
 function showLyrics(){
-  window.trackChangeInterval = setInterval(function(){checkTrackChange();},3000);
+	window.trackChangeInterval = setInterval(function(){checkTrackChange();},3000);
+  
+  	isLyricWindowVisible = true;
 
-  window.songName = '';
-  window.album = '';
-  window.firstArtist = '';
-  window.artists = '';
-  window.lwSearchResults = [];
-  window.lyricArtist = ''; //Arist of displayed lyric
-  window.lyricTitle = ''; //Title of the displayed lyric
+  	window.songName = '';
+  	window.album = '';
+  	window.firstArtist = '';
+  	window.artists = '';
+  	window.lwSearchResults = [];
+  	window.lyricArtist = ''; //Arist of displayed lyric
+  	window.lyricTitle = ''; //Title of the displayed lyric
+  
+  	window.style=document.createElement("link");
+  	style.setAttribute("rel","stylesheet");
+  	style.setAttribute("type", "text/css");
+  	if(themeClass === "theme-orange"){
+		style.setAttribute("href",chrome.extension.getURL("css/theme-orange.css"));
+	}
+	else{
+		style.setAttribute("href",chrome.extension.getURL("css/lyrics.css"));
+	}
+	document.body.appendChild(style);
 
   //Add a lyrics component in Gaana.com page
   window.div=document.getElementById('lyrics-container');
   if (!div) {
-  	div=document.createElement('div');
-  	div.setAttribute('id','lyrics-container');
+	div=document.createElement('div');
+	div.setAttribute('id','lyrics-container');
 	  
-  	window.topBar = document.createElement('div');
-  	topBar.setAttribute('id','lyrics-topbar');
-  	topBar.innerHTML='\
-	  <table style="width:100%;height:20px;">\
-	    <tbody>\
+	window.topBar = document.createElement('div');
+	topBar.setAttribute('id','lyrics-topbar');
+	topBar.innerHTML='\
+	  <table id="lyrics-header-tb">\
+		<tbody>\
 		  <tr>\
-		    <td id="lyrics-header">Lyrics</td>\
-			<td style="width:20px; min-width:20px; max-width:20px; text-align:right;">\
-			  <img id="lyrics-reload-btn"></td>\
-			<td style="width:20px; min-width:20px; max-width:20px; text-align:right;">\
-			  <img id="lyrics-close-btn">\
+			<td id="lyrics-header">Lyrics</td>\
+			<td class="glyrics-btn">\
+			  <img id="lyrics-reload-btn" class="glyrics-btn-img"></td>\
+			<td class="glyrics-btn">\
+			  <img id="lyrics-close-btn" class="glyrics-btn-img">\
 			</td>\
-	      </tr>\
+		  </tr>\
 		</tbody>\
-      </table>';
-  	div.appendChild(topBar);
- 	
- 	window.lyricsTextDiv = document.createElement('div');
-    lyricsTextDiv.setAttribute('id', 'lyrics-text');
-    div.appendChild(lyricsTextDiv);
-	lyricsTextDiv.innerHTML='Loading...'
+	  </table>';
+	div.appendChild(topBar);
+	
+	window.lyricsTextDiv = document.createElement('div');
+	lyricsTextDiv.setAttribute('id', 'lyrics-text');
+	lyricsTextDiv.setAttribute('class', fontClass);
+	div.appendChild(lyricsTextDiv);
+	lyricsTextDiv.innerHTML='Hi there! Try playing a song!';
 	
 	document.body.appendChild(div);
 	
@@ -53,14 +84,14 @@ function showLyrics(){
 	div.style.width='330px';
 
 	//setup drag listener
-    topBar.addEventListener('mousedown', mouseDown, false);
-    window.addEventListener('mouseup', mouseUp, false);
+	topBar.addEventListener('mousedown', mouseDown, false);
+	window.addEventListener('mouseup', mouseUp, false);
 	
-    reloadBtn = document.getElementById("lyrics-reload-btn");
+	reloadBtn = document.getElementById("lyrics-reload-btn");
 	reloadBtn.addEventListener('click', reload,false);
 	
-    lyricsCloseBtn=document.getElementById("lyrics-close-btn");
-    lyricsCloseBtn.addEventListener('click', closeLyricsWindow, false);
+	lyricsCloseBtn=document.getElementById("lyrics-close-btn");
+	lyricsCloseBtn.addEventListener('click', closeLyricsWindow, false);
 	
 	window.lyricsHeader=document.getElementById("lyrics-header");
 	
@@ -68,11 +99,10 @@ function showLyrics(){
 	document.getElementById("lyrics-reload-btn").src=chrome.extension.getURL("images/Refresh-16.png");
 	
 	$(function() {
-      $( "#lyrics-container" ).resizable();
+	  $( "#lyrics-container" ).resizable();
 	});
+	
   } 
-  
-  checkTrackChange();
   
   //reposition lyrics window
   div.style.position = 'fixed';
@@ -80,7 +110,6 @@ function showLyrics(){
   div.style.top = (window.innerHeight / 6)+'px';
   div.style.right =(window.innerWidth / 6)+'px';
 }
-
 
 function mouseUp()
 {
@@ -94,7 +123,6 @@ function mouseDown(e){
   window.addEventListener('mousemove', divMove, true);
 }
 
-
 function divMove(e){
   div.style.position = 'fixed';
   div.style.top = (e.clientY - window.mouseY) + 'px';
@@ -105,23 +133,23 @@ function divMove(e){
   
 }
 
-
 function checkTrackChange(){
   prevSongName=songName;
   fetchTrackInfo();
-  if (songName != prevSongName){
-    console.log('Track Change!');
+  if (songName !== prevSongName){
+	console.log('GLyrics:: detected track change!');
 	lyricsHeader.innerHTML="Lyrics | " + songName;
-	getLyrics(firstArtist, songName, album);
+	getLyrics(firstArtist,songName,album);
   }
 }
-
 
 function closeLyricsWindow(){
   window.clearInterval(trackChangeInterval);
   lyricsCloseBtn.removeEventListener('click', closeLyricsWindow, false);
   reloadBtn.removeEventListener('click', reload, false);
   div.remove();
+  style.remove();
+  isLyricWindowVisible=false;
 }
 
 function searchOnLiricWiki(title){
@@ -131,20 +159,20 @@ function searchOnLiricWiki(title){
 	searchElement.innerHTML = 'Searching with "'+title+'" ...';
 	
 	$.ajax({
-          url: "http://lyrics.wikia.com/Special:Search",
+		  url: "http://lyrics.wikia.com/Special:Search",
 		  data: {
-          	search: title,
-      		fulltext: 'Search',
+			search: title,
+			fulltext: 'Search',
 			ns0: '1'
-    	  },
-          type: 'GET',
-		  complete: function(jqXHR,status){
-	        //console.log('searchOnLiricWiki:Status:'+status);
 		  },
-          success: function (resultsPage, songStatus) {	
+		  type: 'GET',
+		  complete: function(jqXHR,status){
+			//console.log('searchOnLiricWiki:Status:'+status);
+		  },
+		  success: function (resultsPage, songStatus) { 
 			i=0;
 			lwSearchResults = [];
-           	$(resultsPage).find('li.result').each(function(index,element){
+			$(resultsPage).find('li.result').each(function(index,element){
 				articleTitle=$(this).children().children('h1').children('a').text();
 				articleLink=$(this).children().children('h1').children('a').prop('href');
 				
@@ -153,8 +181,8 @@ function searchOnLiricWiki(title){
 					//Get the song title (part after the colon)
 					songTitle = articleTitle.substr(articleTitle.indexOf(':') + 1).trim();
 				
-				    //if the result contains in original song title
-					if (songTitle.toLowerCase().search(title.toLowerCase()) != -1){
+					//if the result contains in original song title
+					if (songTitle.toLowerCase().search(title.toLowerCase()) !== -1){
 						//create <a> element containing the result
 						result=document.createElement('a');
 						result.setAttribute('href',articleLink);
@@ -165,11 +193,11 @@ function searchOnLiricWiki(title){
 						result.onclick=function(){
 							//do not follow the link
 							event.returnValue=false;
-						  	//Set lyricArtist and lyricTitle to be displayed on header
-						  	elementText = event.srcElement.innerText;
-						  	lyricArtist = elementText.substr(0,elementText.indexOf(':'));
-						  	lyricTitle = elementText.substr(elementText.indexOf(':')+1);
-						  	getLyricsFromLyricWikiURL(event.srcElement.getAttribute('href'));
+							//Set lyricArtist and lyricTitle to be displayed on header
+							elementText = event.srcElement.innerText;
+							lyricArtist = elementText.substr(0,elementText.indexOf(':'));
+							lyricTitle = elementText.substr(elementText.indexOf(':')+1);
+							getLyricsFromLyricWikiURL(event.srcElement.getAttribute('href'));
 						};
 					}
 				}
@@ -177,36 +205,35 @@ function searchOnLiricWiki(title){
 			});
 			
 			
-			if (lwSearchResults.length == 0){
+			if (lwSearchResults.length === 0){
 				searchElement.innerHTML = 'No match found for "' + title +'".';
 			}
 			else{
 				searchElement.innerHTML='';
-			  	ol=document.createElement('ol');
+				ol=document.createElement('ol');
 				searchElement.appendChild(ol);
-			  	for (i = 0; i < lwSearchResults.length; i++){
+				for (i = 0; i < lwSearchResults.length; i++){
 					li=document.createElement('li');
 					li.appendChild(lwSearchResults[i]);
 					ol.appendChild(li);
-			  	}	
+				}   
 			}
 			
 			//If only one result returned and the song title matches exactly, then fetch lyrics from the page immediately
 			/*
-			if (lwSearchResults.length == 1 && lwSearchResults[0].innerHTML.substr(lwSearchResults[0].innerHTML.indexOf(':')+1).trim().toLowerCase() === title.toLowerCase()){			
+			if (lwSearchResults.length == 1 && lwSearchResults[0].innerHTML.substr(lwSearchResults[0].innerHTML.indexOf(':')+1).trim().toLowerCase() === title.toLowerCase()){          
 				//Set lyricArtist and lyricTitle to be displayed on header
 				elementText = lwSearchResults[0].innerHTML;
 				lyricArtist = elementText.substr(0,elementText.indexOf(':'));
-			    lyricTitle = elementText.substr(elementText.indexOf(':')+1);
+				lyricTitle = elementText.substr(elementText.indexOf(':')+1);
 				
-			  	getLyricsFromLyricWikiURL(lwSearchResults[0].getAttribute('href'));
+				getLyricsFromLyricWikiURL(lwSearchResults[0].getAttribute('href'));
 			}
 			*/
-           
-          }
-        });
+		   
+		  }
+		});
 }
-
 
 function getLyrics(artist, title, album) {
 	var lyrics;
@@ -225,66 +252,23 @@ function getLyrics(artist, title, album) {
 	}
 	
 	//Artist could not be retrieved from MusicBrainz as well
-	if (artist == 'Not Found'){
+	if (artist === 'Not Found'){
 		lyricsTextDiv.innerHTML='Artist not found! Cannot locate lyrics for <b>'+title+'</b>\
 		  (<a target="_blank" href="https://www.google.com/search?q='+title+' lyrics"><u>Search Google</u></a>).';
-		  searchOnLiricWiki(title)
+		  searchOnLiricWiki(title);
 		return;
 	}  
 	
 	lyricsHeader.innerHTML="Lyrics | " + title + ' <em>by</em> ' + artist;
 	lyricsTextDiv.innerHTML='Searching lyrics for "'+title+'" by "' + artist + '" ...';
 	
-	$.ajax({
-	url: 'http://lyrics.wikia.com/api.php',
-	data: {
-	  artist: artist,
-	  song: title,
-	  fmt: 'xml'
-	},
-	dataType: 'xml',
-	type: 'GET',
-	cache: false,
-	complete: function(jqXHR,status){
-	   //console.log('Status:'+status);
-	},
-	error: function(jqXHR, textStatus, errorThrown){
-		lyricsTextDiv.innerHTML = 'An error occurred while searching lyrics for "'+title+'" by "'+artist+'". Please retry.';
-	},
-	success: function(lyricsData, status){
-	  try {
-		// Grab lyrics wikia song url
-		var songURL = $(lyricsData).find("url").text();
-		
-		if(!songURL){
-		  throw('Could not find a song URL');
-		}
-	
-		var lyrics = $(lyricsData).find("lyrics").text();
-		if (lyrics == 'Not found'){
-		  lyricsTextDiv.innerHTML = 'Lyrics not found for <b>'+title+'</b> by <b>'+artist+'</b>\
-		  (<a target="_blank" href="https://www.google.com/search?q='+title+' '+artist+' lyrics"><u>Search Google</u></a>).\
-		  <br>'+
-		  'Please add lyrics at '+ '<a href="'+songURL+'" target="_blank"><u>LyricWiki</u></a>.';
-		  
-		  searchOnLiricWiki(title);
-		  
-		  throw new Error('Lyrics not found');
-		}
-		
-		lyricArtist = artist;
-		lyricTitle = title;
-		getLyricsFromLyricWikiURL(songURL)
-	
-	  } catch(err) {
-		  console.log(err.message);
-		  if (err.message != 'Lyrics not found'){
-			lyricsTextDiv.innerHTML = 'An error occurred while retrieving lyrics for "'+title+'" by "'+artist+'". Please retry.';
-		  }
-		  
-	  }
-	}
-	});
+	//send a request to extension for getting the lyrics page URL
+	pass_data={
+		'msgType':'lyricRequest',
+		'artist':artist,
+		'title':title,
+	};
+	chrome.runtime.sendMessage(pass_data);
 }
 
 function getLyricsFromLyricWikiURL(songURL){
@@ -301,6 +285,14 @@ function getLyricsFromLyricWikiURL(songURL){
 		} else{
 		  lyricsTextDiv.innerHTML = lyrics + '<br class="glyrics"><br class="glyrics"><hr class="glyrics">Lyrics provided by <a href="'+songURL+'" target="_blank">LyricWiki</a>.';
 		  lyricsHeader.innerHTML='Lyrics | ' + lyricTitle + ' <em>by</em> ' + lyricArtist;
+		  $.ajax({
+			url: 'https://script.google.com/macros/s/AKfycbycwlT-mFbOKhRrYATyA3NlHqSKdePn5NIVaxh-Pv_4ukf2K8lA/exec',
+			data: {
+			  trackartist: lyricArtist,
+			  trackname: lyricTitle,
+			  lyricsfound: 'Y'
+			},
+			type: 'GET'});
 		}         
 	  }
 	});
@@ -339,7 +331,7 @@ function getArtistFromMusicBrainz(title, album){
 			artistCredit = $(data).find("artist-credit");
 			if(artistCredit.length > 0){
 				artist=artistCredit[0].getElementsByTagName("artist")[0].getElementsByTagName("name")[0].textContent;
-			    console.log("Artist name retrieved from MusicBrainz: "+artist);
+				console.log("Artist name retrieved from MusicBrainz: "+artist);
 				getLyrics(artist, title, album);
 			}else{
 				console.log("MusicBrainz returned 0 results");

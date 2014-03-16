@@ -1,55 +1,88 @@
+@import url(http://fonts.googleapis.com/css?family=Pacifico|Roboto);
+
 div
 {
 	font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
 }
 
-ol
-{
-	list-style-type:decimal
-}
-
 hr.glyrics
 {
-	margin: 0px 0;
+	margin: 0 0;
 }
 
 br.glyrics
 {
-	padding: 0px;
+	padding: 0;
 }
 
 #lyrics-container
 {
-	color: blue;
+	color: black;
 	position: fixed;
 	top: 200px;
 	left: 500px;
 	background-color: #CCFFCC;
-	padding: 0px;
-	border: solid 2px #009999;
+	padding: 0;
+	border: solid 1px #009999;
 	opacity: 0.9;
-	z-index: 2000;
+	z-index: 10000;
 	max-height: 80%;
 	max-width: 80%;
 	min-width: 200px;
 	min-height: 50px;
     display: inline-block;
 }
+
 #lyrics-topbar
 {
 	color:white;
 	background-color: #009999;
-	height: 20px;
+	height: 30px;
 	cursor: move;
 	font-size:14px;
-	padding: 5px;
+	padding: 0;
+	vertical-align: middle;
+	margin: 0;
 }
-#lyrics-header
-{
-	white-space:nowrap;
-	overflow-x:hidden;
-	max-width:100px;
-}
+
+	#lyrics-topbar #lyrics-header-tb{
+		width: 100%;
+		height: 100%;
+		border-spacing: 0;
+		vertical-align: middle;
+		padding-right:2px;
+	}
+
+		#lyrics-topbar #lyrics-header-tb #lyrics-header
+		{
+			white-space: nowrap;
+			overflow-x: hidden;
+			text-overflow: ellipsis;
+			vertical-align: middle;
+			padding-left: 5px;
+			max-width: 100px;
+		}
+
+		#lyrics-topbar #lyrics-header-tb .glyrics-btn
+		{
+			width:20px; 
+			min-width:20px; 
+			max-width:20px; 
+			text-align:right;
+			vertical-align: middle;
+			padding:0;
+			line-height: normal;
+			height:auto;
+		}
+		#lyrics-topbar #lyrics-header-tb .glyrics-btn .glyrics-btn-img{
+			vertical-align: middle;
+			cursor:pointer;
+			padding:2px 2px 2px 2px;
+		}
+		#lyrics-topbar #lyrics-header-tb .glyrics-btn .glyrics-btn-img:hover{
+			background-color: gray;
+			background-color: RGBA(0,0,0,.2);
+		}
 
 #lyrics-text
 {
@@ -60,12 +93,16 @@ br.glyrics
 	display: inline-block;
 	position: absolute;
 	top: 30px;
-	left: 0px;
-	right: 0px;
-	bottom: 0px;
+	left: 0;
+	right: 0;
+	bottom: 0;
 }
 
-#lyrics-close-btn,#lyrics-reload-btn
-{
-	cursor:pointer;
+
+.Pacifico{
+	font-family:'Pacifico', cursive;
+}
+
+.Roboto {
+	font-family:'Roboto', sans-serif;
 }

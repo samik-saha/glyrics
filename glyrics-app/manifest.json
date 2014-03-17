@@ -1,0 +1,19 @@
+{
+  "name": "Gaana Lyrics",
+  "description": "Displays lyrics",
+  "version": "0.1",
+  "app": {
+    "background": {
+      "scripts": ["background.js"]
+    }
+  },
+  "icons": {
+		"64": "images/icon64.png",
+		"128": "images/icon128.png"
+	},
+  "permissions": [
+  		"http://*/*", 
+		"https://*/*",
+		"alwaysOnTopWindows"
+		]
+}

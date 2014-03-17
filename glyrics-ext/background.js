@@ -1,3 +1,5 @@
+var glyrics_appid="fcmcighfhlingdjkgagbkjpobnonabee";
+
 
 // Called when the url of a tab changes.
 function checkForValidUrl(tabId, changeInfo, tab) {
@@ -29,9 +31,13 @@ chrome.tabs.onUpdated.addListener(checkForValidUrl);
 // setup message listener from content script
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
-    if (request.msgType == "lyricRequest"){
+    if (request.msgType === "lyricRequest"){
 		window.msgFromTabId=sender.tab.id;
 		getLyricURL(request.artist, request.title);
+	}
+	/* send track information to app event page */
+	else if (request.msgType === "trackInfo"){
+		chrome.runtime.sendMessage(glyrics_appid, request);
 	}
   });
 

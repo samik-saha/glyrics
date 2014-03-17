@@ -1,4 +1,14 @@
-window.isLyricWindowVisible = false;
+var isLyricWindowVisible = false;
+var songName = '';
+var	album = '';
+var firstArtist = '';
+
+/* Set up a timer to detect track changes.
+ * If a track change is detected it sends out messages 
+ * to extension background page and the related app.
+ * This timer runs as long as user is on the page.
+ * */
+var trackChangeInterval = setInterval(function(){checkTrackChange();},3000);
 
 /* Set Up a Message Listener */
 chrome.runtime.onMessage.addListener(
@@ -10,12 +20,14 @@ chrome.runtime.onMessage.addListener(
 	  if(isLyricWindowVisible) closeLyricsWindow();
 	  showLyrics();
 	}
+	/* lyrics page url is returned from background page */
 	else if (request.msgType === "songURL"){
 		getLyricsFromLyricWikiURL(request.url);
 		lyricArtist = firstArtist;
 		lyricTitle = songName;
 		
 	}
+	/* error information returned from background page */
 	else if (request.msgType === "displayError"){
 		lyricsTextDiv.innerHTML = request.message;
 		if (request.msgAction == 'searchOnLyricWiki'){
@@ -25,13 +37,8 @@ chrome.runtime.onMessage.addListener(
   });
 
 function showLyrics(){
-	window.trackChangeInterval = setInterval(function(){checkTrackChange();},3000);
-  
   	isLyricWindowVisible = true;
 
-  	window.songName = '';
-  	window.album = '';
-  	window.firstArtist = '';
   	window.artists = '';
   	window.lwSearchResults = [];
   	window.lyricArtist = ''; //Arist of displayed lyric
@@ -102,6 +109,8 @@ function showLyrics(){
 	  $( "#lyrics-container" ).resizable();
 	});
 	
+	lyricsHeader.innerHTML="Lyrics | " + songName;
+	getLyrics(firstArtist, songName, album);
   } 
   
   //reposition lyrics window
@@ -138,13 +147,22 @@ function checkTrackChange(){
   fetchTrackInfo();
   if (songName !== prevSongName){
 	console.log('GLyrics:: detected track change!');
-	lyricsHeader.innerHTML="Lyrics | " + songName;
-	getLyrics(firstArtist,songName,album);
+	if (isLyricWindowVisible){
+		lyricsHeader.innerHTML="Lyrics | " + songName;
+		getLyrics(firstArtist, songName, album);
+	}
+	/* send out track information to background page */
+	pass_data={
+		'msgType': 'trackInfo',
+		'artist': firstArtist,
+		'title': songName,
+		'album': album
+	};
+	chrome.runtime.sendMessage(pass_data);
   }
 }
 
 function closeLyricsWindow(){
-  window.clearInterval(trackChangeInterval);
   lyricsCloseBtn.removeEventListener('click', closeLyricsWindow, false);
   reloadBtn.removeEventListener('click', reload, false);
   div.remove();

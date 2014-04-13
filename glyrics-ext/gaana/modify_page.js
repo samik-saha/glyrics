@@ -7,7 +7,7 @@ function replaceElements() {
     }
     
     ad_client=$("#adsRightMid").find("ins.adsbygoogle").attr("data-ad-client");
-    if (ad_client == "ca-pub-8085801308709739"){
+    if (ad_client === "ca-pub-8085801308709739"){
         return;
     }
     
@@ -15,7 +15,7 @@ function replaceElements() {
     
     adScript1 = document.createElement("script");
     adScript1.async = true;
-    adScript1.src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+    adScript1.src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
     ad1Div.appendChild(adScript1);
     
     insElement = document.createElement("ins");

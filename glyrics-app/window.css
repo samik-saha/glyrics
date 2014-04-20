@@ -1,0 +1,29 @@
+#header {
+}
+h2 {
+	margin: 0px;
+}
+
+h4 {
+	margin-bottom: 5px;
+	margin-top: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+article {
+	height: 100%;
+	overflow: auto;
+}
+hr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid #ccc;
+	margin: 1em 0;
+	padding: 0;
+}
+
+p {
+	margin: 0 0;
+}

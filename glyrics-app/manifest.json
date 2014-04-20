@@ -1,7 +1,9 @@
 {
   "name": "Gaana Lyrics",
-  "description": "Displays lyrics",
-  "version": "0.1",
+  "short_name": "GLyrics",
+  "description": "Displays lyrics in a foreground window for online music services",
+  "author": "Samik",
+  "version": "1.0",
   "app": {
     "background": {
       "scripts": ["background.js"]
@@ -12,7 +14,7 @@
 		"128": "images/icon128.png"
 	},
   "permissions": [
-  		"http://*/*", 
+  		"http://*/*",
 		"https://*/*",
 		"alwaysOnTopWindows"
 		]

@@ -4,7 +4,7 @@
 	"name": "Gaana Lyrics",
 	"short_name": "GLyrics",
 	"description": "Displays lyrics on Gaana.com, Spotify, Grooveshark & Saavn",
-	"version": "2.7",
+	"version": "2.8",
 	"author": "Samik",
 	"icons": {
 		"64": "images/icon64.png",

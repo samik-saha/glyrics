@@ -1,4 +1,4 @@
-var glyrics_appid="fcmcighfhlingdjkgagbkjpobnonabee";
+var glyrics_appid="paiehomgejkdifojcddmbinmophkibac";
 var msgFromTabId;
 var trackInfoMessage;
 var title;

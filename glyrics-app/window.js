@@ -1,4 +1,4 @@
-var extId = "pilpjbfhnjemcemekobhnfpbbiimomoa";
+var extId = "indphkjgcbdoaigcjlaaokkfllleolli";
 var hasExtension = false;
 var requiredVersion = 1.0;
 var mainView = null;

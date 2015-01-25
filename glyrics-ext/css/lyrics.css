@@ -1,94 +1,92 @@
-@import url(http://fonts.googleapis.com/css?family=Pacifico|Roboto);
+﻿@charset "utf-8";
 
-div
-{
-	font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
-}
-
-hr.glyrics
-{
+hr.glyrics {
 	margin: 0 0;
-}
-
-br.glyrics
-{
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid #A3BFBA;
 	padding: 0;
 }
 
-#lyrics-container
-{
-	color: black;
+br.glyrics {
+	padding: 0;
+}
+
+
+#lyrics-container {
+	font-size: 14px;
 	position: fixed;
 	top: 200px;
 	left: 500px;
-	background-color: #CCFFCC;
 	padding: 0;
-	border: solid 1px #009999;
+	border: solid 1px;
 	opacity: 0.9;
-	z-index: 10000;
+	z-index: 2147483647;
 	max-height: 80%;
 	max-width: 80%;
 	min-width: 200px;
 	min-height: 50px;
-    display: inline-block;
+	display: inline-block;
+	font-weight: normal;
+	box-shadow: rgba(0, 0, 0, 0.3) 5px 5px 5px -3px
+	color: black;
+	background-color: #CCFFF6;
+	border-color: #42A695;
 }
 
-#lyrics-topbar
-{
-	color:white;
-	background-color: #009999;
+#lyrics-topbar {
 	height: 30px;
 	cursor: move;
-	font-size:14px;
+	font-weight: bold;
 	padding: 0;
 	vertical-align: middle;
 	margin: 0;
+	color: white;
+	background-color: #42A695;
+	font-size:13px;
 }
 
-	#lyrics-topbar #lyrics-header-tb{
-		width: 100%;
-		height: 100%;
-		border-spacing: 0;
-		vertical-align: middle;
-		padding-right:2px;
-	}
+#lyrics-topbar #lyrics-header-tb {
+	width: 100%;
+	height: 100%;
+	border-spacing: 0;
+	vertical-align: middle;
+	padding-right: 2px;
+}
 
-		#lyrics-topbar #lyrics-header-tb #lyrics-header
-		{
-			white-space: nowrap;
-			overflow-x: hidden;
-			text-overflow: ellipsis;
-			vertical-align: middle;
-			padding-left: 5px;
-			max-width: 100px;
-		}
+#lyrics-topbar #lyrics-header-tb #lyrics-header {
+	white-space: nowrap;
+	overflow-x: hidden;
+	text-overflow: ellipsis;
+	vertical-align: middle;
+	padding-left: 5px;
+	max-width: 100px;
+}
 
-		#lyrics-topbar #lyrics-header-tb .glyrics-btn
-		{
-			width:20px; 
-			min-width:20px; 
-			max-width:20px; 
-			text-align:right;
-			vertical-align: middle;
-			padding:0;
-			line-height: normal;
-			height:auto;
-		}
-		#lyrics-topbar #lyrics-header-tb .glyrics-btn .glyrics-btn-img{
-			vertical-align: middle;
-			cursor:pointer;
-			padding:2px 2px 2px 2px;
-		}
-		#lyrics-topbar #lyrics-header-tb .glyrics-btn .glyrics-btn-img:hover{
-			background-color: gray;
-			background-color: RGBA(0,0,0,.2);
-		}
+#lyrics-topbar #lyrics-header-tb .glyrics-btn {
+	width: 20px;
+	min-width: 20px;
+	max-width: 20px;
+	text-align: right;
+	vertical-align: middle;
+	padding: 0;
+	line-height: normal;
+	height: auto;
+}
 
-#lyrics-text
-{
-    color: #1D3E3E;
-	padding: 5px;
-	font-size: 14px;
+#lyrics-topbar #lyrics-header-tb .glyrics-btn .glyrics-btn-img {
+	vertical-align: middle;
+	cursor: pointer;
+	padding: 2px 2px 2px 2px;
+}
+
+#lyrics-topbar #lyrics-header-tb .glyrics-btn .glyrics-btn-img:hover {
+	background-color: RGBA(0, 0, 0, .2);
+}
+	
+#glyrics-content {
+	padding: 8px;
 	overflow-y: auto;
 	display: inline-block;
 	position: absolute;
@@ -96,13 +94,80 @@ br.glyrics
 	left: 0;
 	right: 0;
 	bottom: 0;
+	line-height: normal;
+}
+
+#glyrics-content *{
+	font-size: inherit;
+	font-family: inherit;
+}
+
+#glyrics-content .courtesy{
+	font-size: 12px;
+}
+
+#glyrics-content,#glyrics-content * {
+	color: black;
+}
+
+#glyrics-content a:LINK {
+	color: #005D5D;
+}
+
+#glyrics-content a:VISITED {
+	color: #005D5D;
+}
+
+#glyrics-content a:HOVER {
+	text-decoration: underline;
+}
+
+#glyrics-content::-webkit-scrollbar {
+    width: 10px;
+}
+
+#glyrics-content::-webkit-scrollbar-thumb {
+	border: 1px solid #A3BFBA;
+	border-radius: 10px;
+	background-color: #A3BFBA;
+}
+
+#glyrics-content::-webkit-scrollbar-track {
+	background-color: #CCFFF6;
+}
+
+#glyrics-content::-webkit-scrollbar-corner {
+	background-color: #CCFFF6;
+}
+
+.DefaultFont {
+
+	/*font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;*/
+	font-size: 14px;
+}
+
+.BrushScriptMT {
+	font-family: "Brush Script MT", cursive;
+	font-size: 18px;
+}
+
+.Papyrus {
+	font-family: Papyrus, fantasy;
+	font-size: 16px;
+}
+
+.Helvetica {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px;
 }
 
 
-.Pacifico{
-	font-family:'Pacifico', cursive;
+.Baskerville {
+	font-family: Baskerville, "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+	font-size: 16px;
 }
 
-.Roboto {
-	font-family:'Roboto', sans-serif;
+.SegoeUI {
+	font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+	font-size: 14px;
 }

@@ -1,0 +1,36 @@
+#lyrics-container {
+	color: black;
+	background-color: #121314;
+	border-color: #354C00;
+}
+
+#lyrics-topbar {
+	color: black;
+	font-weight: bold;
+	background-color: #6A9700;
+}
+
+#lyrics-text,#lyrics-text * {
+	color: white;
+}
+
+#lyrics-text a:LINK {
+	color: #CEE599;
+}
+
+#lyrics-text a:VISITED {
+	color: #CEE599;
+}
+
+#lyrics-text::-webkit-scrollbar-thumb {
+	border-color: #323438;
+	background-color: #323438;
+}
+
+#lyrics-text::-webkit-scrollbar-track {
+	background-color: #1c1c1f;
+}
+
+#lyrics-text::-webkit-scrollbar-corner {
+	background-color: #1c1c1f;
+}

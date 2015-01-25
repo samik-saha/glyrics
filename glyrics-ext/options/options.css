@@ -1,40 +1,95 @@
 @charset "utf-8";
-@import url(http://fonts.googleapis.com/css?family=Pacifico|Josefin+Sans);
-/* CSS Document */
+@import url(http://fonts.googleapis.com/css?family=Crafty+Girls|Walter+Turncoat|Gloria+Hallelujah|Calligraffitti|Inconsolata|Courgette|Slabo+27px);
+
+body {
+	font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+	color: rgb(48, 57, 66);
+}
+
+hr {
+	border-color:transparent;
+	border-width:1px;
+	border-top-color:rgb(250,250,250);
+}
 
 h1 {
-	background-color: orange;
+	font-family: sans-serif;
+	font-size: 18px;
 	display: block;
 	position: fixed;
 	text-align: left;
-	top: 88px;
-	left: -110px;
+	top: 60px;
+	left: -116px;
 	padding-left: 20px;
 	padding-bottom: 5px;
 	width: 240px;
+	background-color: orange;
+}
+
+h3 {
+	color: black;
+	font-size: 1.2em;
+	margin-bottom: 0.8em;
+}
+
+input[type="radio"]{
+	margin-top:-2px;
+    vertical-align: middle;
 }
 
 .rotate {
 	/* Safari */
 	-webkit-transform: rotate(-90deg);
-	
 	/* Firefox */
 	-moz-transform: rotate(-90deg);
-	
 	/* IE */
 	-ms-transform: rotate(-90deg);
-	
 	/* Opera */
 	-o-transform: rotate(-90deg);
 	transform: rotate(-90deg);
 	/* Internet Explorer */
 	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
+.warning {
+	color: orangered;
+}
+
+#color-slider{
+	width:300px;
+	margin-left:20px;
+}
+
+#color-slider.ui-slider{
+	height: 20px;
+	background: linear-gradient(to right,#ff0000,#ff0080,#ff00ff,#8000ff,#0000ff,#0080ff,#00ffff,#00ff80,#00ff00,#80ff00,#ffff00,#ff8000,#ff0000);
+}
+#color-slider .ui-slider-handle{
+	height: 24px;
+}
+
+label {
+	display: -webkit-inline-box;
+}
+
+.option{
+	padding-bottom: 10px;
+	padding-top: 10px;
 
 }
 
-#content{
-	width:600px;
-	margin-left:60px;
+.option2 {
+	display: -webkit-inline-box;
+	padding-bottom: 5px;
+	margin-left: 25px;
+}
+span.caption {
+	font-weight:bold;
+}
+
+#content {
+	width: 600px;
+	margin-left: 60px;
 	vertical-align: top;
 }
 
@@ -42,21 +97,41 @@ h1 {
 	display: inline-block;
 }
 
+.option-label {
+	font-weight: normal;
+	margin-left:-18px;
+}
+
+section {
+	margin-top: 10px;
+	margin-left: 18px;
+	padding-bottom: 10px;
+	display: inline-block;
+}
+
+#save, #close {
+	width: 60px;
+	height: 22px;
+}
+
+#reset {
+	float: right;
+	height: 22px;
+}
+
 #previewPane {
 	margin-left: 50px;
-	margin-top: 10px;
-	display: inline-block;
 	vertical-align: top;
 }
 
 .colorbox {
-	width:60px;
+	width: 60px;
 	height: 10px;
 	padding: 5px 5px 5px 5px;
 	border: 1px solid black;
 	display: inline-block;
 	margin: 2px 2px 2px 2px;
-	cursor:pointer;
+	cursor: pointer;
 }
 
 .green {
@@ -67,63 +142,137 @@ h1 {
 	background-color: orange;
 }
 
+.black {
+	background-color: black;
+}
+
+#fontList{
+	width: 300px;
+}
+
 .font-item {
 	padding: 5px 5px 5px 5px;
 	border: 1px solid black;
 	display: inline-block;
 	margin: 2px 2px 2px 2px;
-	cursor:pointer;
-}
-.Pacifico{
-	font-family:'Pacifico', cursive;
-}
-
-.Roboto {
-	font-family:'Roboto', sans-serif;
+	cursor: pointer;
+	height: 20px;
+	vertical-align: text-top;
 }
 
+.DefaultFont{
+	font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+}
+
+.CraftyGirls {
+	font-family: 'Crafty Girls', cursive;
+}
+
+.Calligraffitti {
+	font-family: 'Calligraffitti', cursive;
+}
+
+.WalterTurncoat {
+	font-family: 'Walter Turncoat', cursive;
+}
+
+.GloriaHallelujah {
+	font-family: 'Gloria Hallelujah', cursive;
+}
+
+.Inconsolata {
+	font-family: 'Inconsolata', monospace;
+}
+
+.Courgette {
+	font-family: 'Courgette', cursive;
+}
+
+.Slabo27px {
+	font-family: 'Slabo 27px', serif;
+}
 
 .selected {
-	border: 3px solid blue;
+	/*border: 3px dotted gray;*/
+	background-color: #FFCC66;
+}
+
+#lyrics-container {
+	border: solid 2px;
+	background-color: #b3ffee;
+	border-color: #42A695;
+	opacity:0.9;
+	height: 300px;
+	position:relative;
+	
+}
+
+#lyrics-topbar {
+	padding: 6px 5px 4px 5px;
+	background-color: #42A695;
+	color: white;
+	height: 20px;
+	font-weight:bold;
+	font-size:13px;
+	vertical-align: middle;
 }
 
 
-
-#lyrics-container
-{
-    border: solid 2px;
+#glyrics-content {
+	padding: 8px;
+	color:black;
+	display:inline-block;
+	overflow-y:auto;
+	position:absolute;
+	top: 30px;
+	left: 0;
+	right: 0;
+	bottom: 0;
 }
-#lyrics-topbar{
-	padding: 5px 5px 5px 5px;
-}
-
-.theme-orange #lyrics-container 
-{
-	color: #A64B00;
-	background-color: #F5DA81;
-    border-color: #FE9A2E;
-}
-
-.theme-green #lyrics-container 
-{
-	color: blue;
-	background-color: #CCFFCC;
-    border-color: #009999;
+#glyrics-content,#glyrics-content * {
+	color: black;
 }
 
-.theme-orange #lyrics-topbar 
-{
-	color:white;
-	background-color: #FE9A2E; 
+#glyrics-content a:LINK {
+	color: #005D5D;
 }
 
-.theme-green #lyrics-topbar
-{
-	color:white;
-	background-color: #009999; 
+#glyrics-content a:VISITED {
+	color: #005D5D;
 }
 
-#lyrics-text
-{
-	padding: 5px;
+#glyrics-content a:HOVER {
+	text-decoration: underline;
+}
+
+#glyrics-content::-webkit-scrollbar {
+    width: 10px;
+}
+
+#glyrics-content::-webkit-scrollbar-thumb {
+	border: 1px solid #A3BFBA;
+	border-radius: 10px;
+	background-color: #A3BFBA;
+}
+
+#glyrics-content::-webkit-scrollbar-track {
+	background-color: #CCFFF6;
+}
+
+#glyrics-content::-webkit-scrollbar-corner {
+	background-color: #CCFFF6;
+}
+#glyrics-content .courtesy{
+	font-size: 10px;
+}
+#status {
+	position: absolute;
+	top:50px;
+	left: 350px;
+	background-color:#FFCC66;
+	color:black;
+	border: solid 1px #FFCC33;
+	padding: 2px 5px 2px 5px;
+	display: none;
+	border-radius: 5px;
 }

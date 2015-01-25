@@ -5,7 +5,7 @@ function fetchTrackInfo(){
   firstArtist = '';
   artists = '';
   
-  songName = $('a.now-playing-link.song').text().trim();
-  firstArtist = $('a.now-playing-link.artist').text().trim();
+  songName = $('#playerSongTitle').text().trim();
+  firstArtist = $('#player-artist').text().trim();
   
 }

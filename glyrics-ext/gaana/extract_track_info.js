@@ -8,8 +8,7 @@ function fetchTrackInfo(){
 
   div_trackInfo = document.getElementById('trackInfo');
   
-  if (div_trackInfo.children.length === 0){
-      lyricsTextDiv.innerHTML="No track is playing!";
+  if (!div_trackInfo || div_trackInfo.children.length === 0){
       return;
   }
   
@@ -45,7 +44,7 @@ function fetchTrackInfo(){
 Although artist name is not displayed, it might be available elsewhere in the page
 This function finds all songs listed in the page and extracts the artist for the current song.
 
-12/27/2013 -- This might no longer being required as artist name is now shown in the player
+12/27/2013 -- This might no longer be required as artist name is now shown in the player
 */
 function extractTracksFromPage(){
     var allSpans = document.getElementsByTagName("span");

@@ -1,0 +1,37 @@
+#lyrics-container {
+	color: black;
+	background-color: white;
+	border-color: #F76700;
+}
+
+#lyrics-topbar {
+	color: white;
+	font-size: 14px;
+	background-color: #F76700;
+	background-image:linear-gradient(#F76700,#FA3219);
+}
+
+#glyrics-content,#glyrics-content * {
+	color: black;
+}
+
+#glyrics-content a:LINK {
+	color: #C53421;
+}
+
+#glyrics-content a:VISITED {
+	color: #C53421;
+}
+
+#glyrics-content::-webkit-scrollbar-thumb {
+	border-color: #CFCFCF;
+	background-color: #CFCFCF;
+}
+
+#glyrics-content::-webkit-scrollbar-track {
+	background-color: #EEEEEE;
+}
+
+#glyrics-content::-webkit-scrollbar-corner {
+	background-color: #EEEEEE;
+}

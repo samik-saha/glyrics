@@ -1,5 +1,38 @@
 @charset "utf-8";
-@import url(http://fonts.googleapis.com/css?family=Crafty+Girls|Walter+Turncoat|Gloria+Hallelujah|Calligraffitti|Inconsolata|Courgette|Slabo+27px);
+@font-face {
+    font-family: 'Calligraffitti';
+    src: url('chrome-extension://__MSG_@@extension_id__/fonts/Calligraffitti.ttf');
+}
+
+@font-face {
+    font-family: 'Courgette';
+    src: url('chrome-extension://__MSG_@@extension_id__/fonts/Courgette.ttf');
+}
+
+@font-face {
+    font-family: 'CraftyGirls';
+    src: url('chrome-extension://__MSG_@@extension_id__/fonts/CraftyGirls.ttf');
+}
+
+@font-face {
+    font-family: 'GloriaHallelujah';
+    src: url('chrome-extension://__MSG_@@extension_id__/fonts/GloriaHallelujah.ttf');
+}
+
+@font-face {
+    font-family: 'Inconsolata';
+    src: url('chrome-extension://__MSG_@@extension_id__/fonts/Inconsolata.ttf');
+}
+
+@font-face {
+    font-family: 'Slabo27px';
+    src: url('chrome-extension://__MSG_@@extension_id__/fonts/Slabo27px.ttf');
+}
+
+@font-face {
+    font-family: 'WalterTurncoat';
+    src: url('chrome-extension://__MSG_@@extension_id__/fonts/WalterTurncoat.ttf');
+}
 
 body {
 	font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
@@ -165,31 +198,31 @@ section {
 }
 
 .CraftyGirls {
-	font-family: 'Crafty Girls', cursive;
+	font-family: 'CraftyGirls';
 }
 
 .Calligraffitti {
-	font-family: 'Calligraffitti', cursive;
+	font-family: 'Calligraffitti';
 }
 
 .WalterTurncoat {
-	font-family: 'Walter Turncoat', cursive;
+	font-family: 'WalterTurncoat';
 }
 
 .GloriaHallelujah {
-	font-family: 'Gloria Hallelujah', cursive;
+	font-family: 'GloriaHallelujah';
 }
 
 .Inconsolata {
-	font-family: 'Inconsolata', monospace;
+	font-family: 'Inconsolata';
 }
 
 .Courgette {
-	font-family: 'Courgette', cursive;
+	font-family: 'Courgette';
 }
 
 .Slabo27px {
-	font-family: 'Slabo 27px', serif;
+	font-family: 'Slabo27px';
 }
 
 .selected {

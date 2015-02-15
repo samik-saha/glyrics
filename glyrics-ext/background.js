@@ -15,7 +15,8 @@ function checkForValidUrl(tabId, changeInfo, tab) {
 			|| tab.url.indexOf('amazon.com/gp/dmusic') > -1
 			|| tab.url.indexOf('play.google.com/music') > -1
 			|| tab.url.indexOf('earbits.com') > -1
-			|| tab.url.indexOf('pandora.com') > -1) {
+			|| tab.url.indexOf('pandora.com') > -1
+            || tab.url.indexOf('rdio.com') > -1) {
 		// ... show the page action.
 		chrome.pageAction.show(tabId);
 	}
@@ -139,13 +140,11 @@ function getLyricURL(artist, title) {
 										+ title
 										+ '" by '
 										+ artist
-										+ '\
-		  					(<a target="_blank" href="https://www.google.com/search?q='
+										+ '(<a target="_blank" href="https://www.google.com/search?q='
 										+ title
 										+ ' '
 										+ artist
-										+ ' lyrics">Search Google</a>).\
-		  					<br>'
+										+ ' lyrics">Search Google</a>).<br>'
 										+ 'Please add lyrics at ' + '<a href="'
 										+ songURL
 										+ '" target="_blank">LyricWiki</a>.'

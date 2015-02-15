@@ -10,27 +10,27 @@
 	background-color: #6A9700;
 }
 
-#lyrics-text,#lyrics-text * {
+#glyrics-content,#glyrics-content * {
 	color: white;
 }
 
-#lyrics-text a:LINK {
+#glyrics-content a:LINK {
 	color: #CEE599;
 }
 
-#lyrics-text a:VISITED {
+#glyrics-content a:VISITED {
 	color: #CEE599;
 }
 
-#lyrics-text::-webkit-scrollbar-thumb {
+#glyrics-content::-webkit-scrollbar-thumb {
 	border-color: #323438;
 	background-color: #323438;
 }
 
-#lyrics-text::-webkit-scrollbar-track {
+#glyrics-content::-webkit-scrollbar-track {
 	background-color: #1c1c1f;
 }
 
-#lyrics-text::-webkit-scrollbar-corner {
+#glyrics-content::-webkit-scrollbar-corner {
 	background-color: #1c1c1f;
 }

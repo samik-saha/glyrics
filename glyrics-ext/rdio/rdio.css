@@ -1,0 +1,35 @@
+#lyrics-container {
+    color: black;
+    background-color: white;
+    border-color: #008FD5;
+}
+
+#lyrics-topbar {
+    color: white;
+    background-color: #008FD5;
+}
+
+#glyrics-content,#glyrics-content * {
+    color: black;
+}
+
+#glyrics-content a:LINK {
+    color: #17801C;
+}
+
+#glyrics-content a:VISITED {
+    color: #17801C;
+}
+
+#glyrics-content::-webkit-scrollbar-thumb {
+    border-color: #CFCFCF;
+    background-color: #CFCFCF;
+}
+
+#glyrics-content::-webkit-scrollbar-track {
+    background-color: #EEEEEE;
+}
+
+#glyrics-content::-webkit-scrollbar-corner {
+    background-color: #EEEEEE;
+}

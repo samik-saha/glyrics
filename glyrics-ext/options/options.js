@@ -190,6 +190,4 @@
         colors = getSchemeColors(hue, settings.background);
         settings.color = colors;
     };
-
-
 })();

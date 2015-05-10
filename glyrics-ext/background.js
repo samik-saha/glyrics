@@ -6,7 +6,6 @@ var title;
 // Called when the url of a tab changes.
 function checkForValidUrl(tabId, changeInfo, tab) {
 	if (tab.url.indexOf('gaana.com') > -1
-			|| tab.url.indexOf('grooveshark.com') > -1
 			|| tab.url.indexOf('saavn.com') > -1
 			|| tab.url.indexOf('play.spotify.com') > -1
 			|| tab.url.indexOf('play.raaga.com') > -1
@@ -16,7 +15,12 @@ function checkForValidUrl(tabId, changeInfo, tab) {
 			|| tab.url.indexOf('play.google.com/music') > -1
 			|| tab.url.indexOf('earbits.com') > -1
 			|| tab.url.indexOf('pandora.com') > -1
-            || tab.url.indexOf('rdio.com') > -1) {
+            || tab.url.indexOf('rdio.com') > -1
+            || tab.url.indexOf('plex.tv/web') > -1
+            || tab.url.indexOf('127.0.0.1:32400/web') > -1
+            || tab.url.indexOf('localhost:32400/web') > -1
+            || tab.url.indexOf('app.rhapsody.com') > -1
+            || tab.url.indexOf('accuradio.com') > -1) {
 		// ... show the page action.
 		chrome.pageAction.show(tabId);
 	}
@@ -140,7 +144,7 @@ function getLyricURL(artist, title) {
 										+ title
 										+ '" by '
 										+ artist
-										+ '(<a target="_blank" href="https://www.google.com/search?q='
+										+ ' (<a target="_blank" href="https://www.google.com/search?q='
 										+ title
 										+ ' '
 										+ artist

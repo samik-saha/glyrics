@@ -173,9 +173,6 @@ function addAutoStyleCSSLink() {
         case "gaana.com":
             autoStyleURL = chrome.extension.getURL("gaana/gaana.css");
             break;
-        case "grooveshark.com":
-            autoStyleURL = chrome.extension.getURL("grooveshark/grooveshark.css");
-            break;
         case "play.spotify.com":
             autoStyleURL = chrome.extension.getURL("spotify/spotify.css");
             break;
@@ -205,6 +202,17 @@ function addAutoStyleCSSLink() {
             break;
         case "www.rdio.com":
             autoStyleURL = chrome.extension.getURL("rdio/rdio.css");
+            break;
+        case "plex.tv":
+        case "127.0.0.1":
+        case "localhost":
+            autoStyleURL = chrome.extension.getURL("plex/plex.css");
+            break;
+        case "app.rhapsody.com":
+            autoStyleURL = chrome.extension.getURL("rhapsody/rhapsody.css");
+            break;
+        case "www.accuradio.com":
+            autoStyleURL = chrome.extension.getURL("AccuRadio/AccuRadio.css");
             break;
     }
     autoStyle.setAttribute("href", autoStyleURL);
@@ -373,7 +381,7 @@ function getLyrics(artist, title, album) {
         contentDiv.innerHTML = 'Artist not found! Cannot locate lyrics for <b>'
         + title
         + '</b>'
-        + '(<a target="_blank" href="https://www.google.com/search?q='
+        + ' (<a target="_blank" href="https://www.google.com/search?q='
         + title + ' lyrics">Search Google</a>).';
 
         searchOnLiricWiki(title);

@@ -23,8 +23,8 @@ br.glyrics {
 	border: solid 1px;
 	opacity: 0.9;
 	z-index: 2147483647;
-	max-height: 80%;
-	max-width: 80%;
+	max-height: 100%;
+	max-width: 100%;
 	min-width: 200px;
 	min-height: 50px;
 	display: inline-block;
@@ -95,6 +95,7 @@ br.glyrics {
 	right: 0;
 	bottom: 0;
 	line-height: normal;
+    text-align:left;
 }
 
 #glyrics-content *{

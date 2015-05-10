@@ -20,7 +20,8 @@ function checkForValidUrl(tabId, changeInfo, tab) {
             || tab.url.indexOf('127.0.0.1:32400/web') > -1
             || tab.url.indexOf('localhost:32400/web') > -1
             || tab.url.indexOf('app.rhapsody.com') > -1
-            || tab.url.indexOf('accuradio.com') > -1) {
+            || tab.url.indexOf('accuradio.com') > -1
+            || tab.url.indexOf('slacker.com') > -1) {
 		// ... show the page action.
 		chrome.pageAction.show(tabId);
 	}

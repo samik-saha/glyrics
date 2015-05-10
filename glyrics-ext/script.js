@@ -214,6 +214,9 @@ function addAutoStyleCSSLink() {
         case "www.accuradio.com":
             autoStyleURL = chrome.extension.getURL("AccuRadio/AccuRadio.css");
             break;
+        case "www.slacker.com":
+            autoStyleURL = chrome.extension.getURL("slacker/slacker.css");
+            break;
     }
     autoStyle.setAttribute("href", autoStyleURL);
     document.body.appendChild(autoStyle);

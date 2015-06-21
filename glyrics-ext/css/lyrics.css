@@ -1,6 +1,4 @@
-﻿@charset "utf-8";
-
-hr.glyrics {
+﻿hr.glyrics {
 	margin: 0 0;
 	display: block;
 	height: 1px;
@@ -20,7 +18,7 @@ br.glyrics {
 	top: 200px;
 	left: 500px;
 	padding: 0;
-	border: solid 1px;
+	border: solid 1px #42A695;
 	opacity: 0.9;
 	z-index: 2147483647;
 	max-height: 100%;
@@ -29,10 +27,10 @@ br.glyrics {
 	min-height: 50px;
 	display: inline-block;
 	font-weight: normal;
-	box-shadow: rgba(0, 0, 0, 0.3) 5px 5px 5px -3px
+	box-shadow: rgba(0, 0, 0, 0.3) 5px 5px 5px -3px;
 	color: black;
 	background-color: #CCFFF6;
-	border-color: #42A695;
+    text-align:left;
 }
 
 #lyrics-topbar {
@@ -82,7 +80,7 @@ br.glyrics {
 }
 
 #lyrics-topbar #lyrics-header-tb .glyrics-btn .glyrics-btn-img:hover {
-	background-color: RGBA(0, 0, 0, .2);
+	background-color: rgba(0, 0, 0, .2);
 }
 	
 #glyrics-content {
@@ -95,7 +93,6 @@ br.glyrics {
 	right: 0;
 	bottom: 0;
 	line-height: normal;
-    text-align:left;
 }
 
 #glyrics-content *{

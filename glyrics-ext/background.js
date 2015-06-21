@@ -21,14 +21,17 @@ function checkForValidUrl(tabId, changeInfo, tab) {
             || tab.url.indexOf('localhost:32400/web') > -1
             || tab.url.indexOf('app.rhapsody.com') > -1
             || tab.url.indexOf('accuradio.com') > -1
-            || tab.url.indexOf('slacker.com') > -1) {
+            || tab.url.indexOf('slacker.com') > -1
+            || tab.url.indexOf('jango.com') > -1
+            || tab.url.indexOf('deezer.com') > -1
+            || tab.url.indexOf('8tracks.com') > -1) {
 		// ... show the page action.
 		chrome.pageAction.show(tabId);
 	}
 }
 
 function iconClicked(tab) {
-	console.log("GLyrics: pageAction clicked");
+	//console.log("GLyrics: pageAction clicked");
 	/* Get stored user preferences */
 	var appWindowChecked = localStorage["appWindow"];
 

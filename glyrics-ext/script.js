@@ -32,7 +32,9 @@ var autoStyle;
  * sends out messages to extension background page and the related app. This
  * timer runs as long as the page is open.
  */
-var iframe = $("<iframe id='glyrics'>").css('display','none').appendTo('body');
+var iframe = $("<iframe id='glyrics'>").css('display','none').appendTo(document.body);
+// document.body is used instead of "body" above because jango.com uses a frameset as a body
+
 iframe[0].contentWindow.setInterval(checkTrackChange,3000);
 
 /* Set Up a Message Listener */
@@ -114,7 +116,14 @@ function showLyrics() {
         div.appendChild(contentDiv);
         contentDiv.innerHTML = 'Hi there! Try playing a song!';
 
-        document.body.appendChild(div);
+        switch (window.location.hostname) {
+            case "www.jango.com":
+                // jango.com uses a frameset as a body. Adding the div inside frameset doesn't work
+                document.body.parentNode.appendChild(div);
+                break;
+            default:
+                document.body.appendChild(div);
+        }
 
         // set initial size
         div.style.height = '500px';
@@ -217,6 +226,15 @@ function addAutoStyleCSSLink() {
         case "www.slacker.com":
             autoStyleURL = chrome.extension.getURL("slacker/slacker.css");
             break;
+        case "www.jango.com":
+            autoStyleURL = chrome.extension.getURL("jango/jango.css");
+            break;
+        case "www.deezer.com":
+            autoStyleURL = chrome.extension.getURL("deezer/deezer.css");
+            break;
+        case "8tracks.com":
+            autoStyleURL = chrome.extension.getURL("8tracks/8tracks.css");
+            break;
     }
     autoStyle.setAttribute("href", autoStyleURL);
     document.body.appendChild(autoStyle);
@@ -242,7 +260,7 @@ function addUserColorStyle(settings) {
         + ' background-color:' + settings.color.scrollBarThumb + ';'
         + ' border-color:' + settings.color.scrollBarThumb + ';}'
     )
-        .appendTo("body");
+        .appendTo(document.body);//document.body used instead of "body" because jango.com uses a frameset as a body
 }
 
 /*
@@ -254,7 +272,7 @@ function addUserFontStyle(settings) {
         .html('#glyrics-text {'
         + 'font-family:' + settings.fontFamily + ';'
         + 'font-size:' + settings.defaultFontSize + ';}')
-        .appendTo("body");
+        .appendTo(document.body);//document.body used instead of "body" because jango.com uses a frameset as a body
 }
 
 /*
@@ -275,7 +293,7 @@ function applyStyle(object) {
                 .html('@font-face{'
                 + 'font-family: '+settings.fontFamily+';'
                 + 'src: url('+chrome.extension.getURL('fonts/'+settings.fontFamily+'.ttf')+');}')
-                .appendTo("body");
+                .appendTo(document.body);//document.body used instead of "body" because jango.com uses a frameset as a body
     }
     else addAutoStyleCSSLink();
     showLyrics();

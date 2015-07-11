@@ -7,7 +7,8 @@ var title;
 function checkForValidUrl(tabId, changeInfo, tab) {
 	if (tab.url.indexOf('gaana.com') > -1
 			|| tab.url.indexOf('saavn.com') > -1
-			|| tab.url.indexOf('play.spotify.com') > -1
+            || tab.url.indexOf('play.spotify.com') > -1
+			|| tab.url.indexOf('player.spotify.com') > -1
 			|| tab.url.indexOf('play.raaga.com') > -1
 			|| tab.url.indexOf('bop.fm') > -1
 			|| tab.url.indexOf('soundcloud.com') > -1

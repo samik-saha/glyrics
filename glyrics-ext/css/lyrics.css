@@ -138,6 +138,10 @@ br.glyrics {
 	background-color: #CCFFF6;
 }
 
+#glyrics-text{
+    padding-bottom:5px;
+}
+
 .DefaultFont {
 
 	/*font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;*/

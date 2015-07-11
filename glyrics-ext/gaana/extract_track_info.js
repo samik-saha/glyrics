@@ -19,6 +19,9 @@ function fetchTrackInfo(){
       songName = songNames[0].innerText.trim();
       albumElement = div_trackInfo.getElementsByClassName("albumNamePl");
       album = (albumElement.length > 0)?albumElement[0].innerText.trim():"";
+      tx=$("#tx");
+      if(tx.length === 0) return;
+      firstArtist = tx.find("span").eq(1).find("a").eq(0).text().trim();
   }else {
       //Gaana.com default
       tx=$("#tx");

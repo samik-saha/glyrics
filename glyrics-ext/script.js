@@ -53,6 +53,7 @@ chrome.runtime.onMessage.addListener(function (request) {
         contentDiv.innerHTML = '<div id="glyrics-text">' + request.lyrics + '</div>';
         lyricsHeader.innerHTML = 'Lyrics | ' + lyricTitle + ' <em>by</em> '
         + lyricArtist;
+        addAd(contentDiv);
     }
     /* error information returned from background page */
     else if (request.msgType === "displayError") {
@@ -127,7 +128,7 @@ function showLyrics() {
 
         // set initial size
         div.style.height = '500px';
-        div.style.width = '330px';
+        div.style.width = '340px';
 
         var reloadBtn = document.getElementById("lyrics-reload-btn");
         reloadBtn.addEventListener('click', reload, false);
@@ -183,6 +184,7 @@ function addAutoStyleCSSLink() {
             autoStyleURL = chrome.extension.getURL("gaana/gaana.css");
             break;
         case "play.spotify.com":
+        case "player.spotify.com":
             autoStyleURL = chrome.extension.getURL("spotify/spotify.css");
             break;
         case "www.pandora.com":
@@ -435,4 +437,25 @@ call the corresponding function
 function callBackgroundScript(targetFunction, args) {
     var message = {functionName: targetFunction, args: args};
     chrome.runtime.sendMessage(message);
+}
+
+function addAd(parent){
+    var adDiv=document.createElement("div");
+    parent.appendChild(adDiv);
+
+    var adScript1 = document.createElement("script");
+    adScript1.async = true;
+    adScript1.src = "//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
+    adDiv.appendChild(adScript1);
+
+    var insElement = document.createElement("ins");
+    insElement.setAttribute("class", "adsbygoogle");
+    insElement.setAttribute("style", "display:inline-block;width:320px;height:100px");
+    insElement.setAttribute("data-ad-client", "ca-pub-8085801308709739");
+    insElement.setAttribute("data-ad-slot", "3851731750");
+    adDiv.appendChild(insElement);
+
+    var adScript2 = document.createElement("script");
+    adScript2.text = "(adsbygoogle = window.adsbygoogle || []).push({});";
+    adDiv.appendChild(adScript2);
 }

@@ -7,8 +7,9 @@
 	padding: 0;
 }
 
-br.glyrics {
+.glyrics br {
 	padding: 0;
+	content: none;
 }
 
 

@@ -1,14 +1,13 @@
 //Get song information from grooveshark.com page
 function fetchTrackInfo(){ 
-  var playbackTitle = $('div.playbackTitle');
+  var playbackTitle = $('a.playbackSoundBadge__title').attr('title').trim();
   
   if (playbackTitle){
 	  songName = '';
 	  album = '';
 	  firstArtist = '';
 	  artists = '';
-	  
-	  playbackTitle = playbackTitle.text().trim();
+
 	  var arr = playbackTitle.split("-");
 	  
 	  if (arr.length > 1){

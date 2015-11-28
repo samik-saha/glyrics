@@ -237,6 +237,9 @@ function addAutoStyleCSSLink() {
         case "8tracks.com":
             autoStyleURL = chrome.extension.getURL("8tracks/8tracks.css");
             break;
+        case "listen.tidal.com":
+            autoStyleURL = chrome.extension.getURL("tidal/tidal.css");
+            break;
     }
     autoStyle.setAttribute("href", autoStyleURL);
     document.body.appendChild(autoStyle);
@@ -378,6 +381,7 @@ function displaySearchResults(lwSearchResults) {
             ol.appendChild(li);
         }
     }
+    addAd(contentDiv);
 }
 
 /*
@@ -441,8 +445,41 @@ function callBackgroundScript(targetFunction, args) {
 
 function addAd(parent){
     var adDiv=document.createElement("div");
+    adDiv.innerHTML="<br>"
     parent.appendChild(adDiv);
 
+    var adScript1 = document.createElement("script");
+    adScript1.text="var googletag = googletag || {};"+
+        "googletag.cmd = googletag.cmd || [];"+
+        "(function () {"+
+        "var gads = document.createElement('script');"+
+        "gads.async = true;"+
+        "gads.type = 'text/javascript';"+
+        "var useSSL = 'https:' == document.location.protocol;"+
+        "gads.src = (useSSL ? 'https:' : 'http:') +"+
+        "'//www.googletagservices.com/tag/js/gpt.js';"+
+        "var node = document.getElementsByTagName('script')[0];"+
+        "node.parentNode.insertBefore(gads, node);"+
+        "})();";
+    adDiv.appendChild(adScript1);
+
+    var adScript2 = document.createElement("script");
+    adScript2.text = "googletag.cmd.push(function() {" +
+        "googletag.defineSlot('/40095566/glyrics_300x250', [300, 250], 'div-gpt-ad-1437284886367-0').addService(googletag.pubads());" +
+        "googletag.enableServices();});";
+    adDiv.appendChild(adScript2);
+
+    var adHolder = document.createElement("div");
+    adHolder.id="div-gpt-ad-1437284886367-0";
+    adHolder.setAttribute("style","height:250px; width:300px;");
+    adDiv.appendChild(adHolder);
+
+    var adScript3=document.createElement("script");
+    adScript3.text="googletag.cmd.push(function() { googletag.display('div-gpt-ad-1437284886367-0'); });";
+    adHolder.appendChild(adScript3);
+
+
+    /*
     var adScript1 = document.createElement("script");
     adScript1.async = true;
     adScript1.src = "//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
@@ -458,4 +495,5 @@ function addAd(parent){
     var adScript2 = document.createElement("script");
     adScript2.text = "(adsbygoogle = window.adsbygoogle || []).push({});";
     adDiv.appendChild(adScript2);
+    */
 }

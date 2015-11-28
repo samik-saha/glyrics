@@ -3,6 +3,29 @@ var msgFromTabId;
 var trackInfoMessage;
 var title;
 
+var showForPages = ["*://gaana.com/*",
+    "*://www.saavn.com/*",
+    "*://play.spotify.com/*",
+    "*://player.spotify.com/*",
+    "*://play.raaga.com/*",
+    "*://bop.fm/*",
+    "*://soundcloud.com/*",
+    "*://www.amazon.com/gp/dmusic/*",
+    "*://play.google.com/music/*",
+    "*://www.earbits.com/*",
+	"*://www.pandora.com/*",
+    "*://www.rdio.com/*",
+    "*://plex.tv/web/*",
+    "*://127.0.0.1/web/*",
+    "*://localhost/web/*",
+    "*://app.rhapsody.com/*",
+    "*://www.accuradio.com/*",
+    "*://jango.com/*",
+    "*://deezer.com/*",
+    "*://8tracks.com/*",
+    "*://listen.tidal.com/*"
+];
+
 // Called when the url of a tab changes.
 function checkForValidUrl(tabId, changeInfo, tab) {
 	if (tab.url.indexOf('gaana.com') > -1
@@ -25,11 +48,14 @@ function checkForValidUrl(tabId, changeInfo, tab) {
             || tab.url.indexOf('slacker.com') > -1
             || tab.url.indexOf('jango.com') > -1
             || tab.url.indexOf('deezer.com') > -1
-            || tab.url.indexOf('8tracks.com') > -1) {
+            || tab.url.indexOf('8tracks.com') > -1
+			|| tab.url.indexOf('listen.tidal.com') > -1){
 		// ... show the page action.
 		chrome.pageAction.show(tabId);
 	}
 }
+
+
 
 function iconClicked(tab) {
 	//console.log("GLyrics: pageAction clicked");
@@ -50,8 +76,13 @@ function iconClicked(tab) {
 	}
 
 }
+function contextMenuOnClicked(info, tab)
+{
+	iconClicked(tab);
+}
 
 chrome.pageAction.onClicked.addListener(iconClicked);
+chrome.contextMenus.create({"contexts":["all"],"title":"Gaana Lyrics","documentUrlPatterns":showForPages, "onclick":contextMenuOnClicked});
 
 /* Listen for any changes to the URL of any tab. */
 chrome.tabs.onUpdated.addListener(checkForValidUrl);
@@ -105,6 +136,7 @@ function getLyricURL(artist, title) {
 			.ajax({
 				url : 'http://lyrics.wikia.com/api.php',
 				data : {
+                    action : 'lyrics',
 					artist : artist,
 					song : title,
 					fmt : 'xml'

@@ -72,7 +72,7 @@
 
         chrome.storage.sync.get("settings", function (object) {
             if (object.settings) {
-                settings = object.settings
+                settings = object.settings;
             }
             else {
                 setDefaultSettings();

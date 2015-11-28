@@ -1,6 +1,6 @@
 #lyrics-container {
     color: black;
-    background-color: #FFD1A3;
+    background-color: white;
     border-color: #fb4337;
 }
 
@@ -22,14 +22,14 @@
 }
 
 #glyrics-content::-webkit-scrollbar-thumb {
-    border-color: #CCA782;
-    background-color: #CCA782;
+    border-color: #CFCFCF;
+    background-color: #CFCFCF;
 }
 
 #glyrics-content::-webkit-scrollbar-track {
-    background-color: #FFE8D1;
+    background-color: #EEEEEE;
 }
 
 #glyrics-content::-webkit-scrollbar-corner {
-    background-color: #F5DA81;
+    background-color: #EEEEEE;
 }

@@ -5,9 +5,6 @@ function fetchTrackInfo() {
     window.firstArtist = '';
     window.artists = '';
 
-    /* JQuery is not working on the page. Don't know why */
-    var frameDocument = document.getElementsByName("content")[0].contentWindow.document;
-
-    window.songName = frameDocument.getElementById("current-song").innerHTML.trim();
-    window.firstArtist = frameDocument.getElementById("player_current_artist").children[1].innerHTML.trim();
+    window.songName = $("#current-song").text().trim();
+    window.firstArtist = $("#player_current_artist").find("a").text().trim();
 }

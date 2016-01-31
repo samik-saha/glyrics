@@ -6,7 +6,7 @@
  the currently playing track.
  */
 
-/* Boolean variable to track if the lyrics pop up is active */
+/* Boolean variable to track ifif the lyrics pop up is active */
 var isLyricWindowVisible = false;
 /* Tracks the current track title */
 var songName = '';
@@ -37,6 +37,8 @@ var iframe = $("<iframe id='glyrics'>").css('display','none').appendTo(document.
 
 iframe[0].contentWindow.setInterval(checkTrackChange,3000);
 
+var errorCount=0;
+
 /* Set Up a Message Listener */
 chrome.runtime.onMessage.addListener(function (request) {
     /* function call handler */
@@ -53,7 +55,6 @@ chrome.runtime.onMessage.addListener(function (request) {
         contentDiv.innerHTML = '<div id="glyrics-text">' + request.lyrics + '</div>';
         lyricsHeader.innerHTML = 'Lyrics | ' + lyricTitle + ' <em>by</em> '
         + lyricArtist;
-        addAd(contentDiv);
     }
     /* error information returned from background page */
     else if (request.msgType === "displayError") {
@@ -214,7 +215,7 @@ function addAutoStyleCSSLink() {
         case "www.rdio.com":
             autoStyleURL = chrome.extension.getURL("rdio/rdio.css");
             break;
-        case "plex.tv":
+        case "app.plex.tv":
         case "127.0.0.1":
         case "localhost":
             autoStyleURL = chrome.extension.getURL("plex/plex.css");
@@ -310,8 +311,9 @@ function applyStyle(object) {
 function checkTrackChange() {
     //console.log("ping From checkTrackChange");
     var prevSongName = songName;
+    var prevArtist = firstArtist;
     fetchTrackInfo();
-    if (songName !== prevSongName) {
+    if (songName !== prevSongName || firstArtist !== prevArtist) {
         //console.log('GLyrics:: detected track change!');
         if (isLyricWindowVisible) {
             lyricsHeader.innerHTML = "Lyrics | " + songName;
@@ -381,7 +383,6 @@ function displaySearchResults(lwSearchResults) {
             ol.appendChild(li);
         }
     }
-    addAd(contentDiv);
 }
 
 /*
@@ -441,59 +442,4 @@ call the corresponding function
 function callBackgroundScript(targetFunction, args) {
     var message = {functionName: targetFunction, args: args};
     chrome.runtime.sendMessage(message);
-}
-
-function addAd(parent){
-    var adDiv=document.createElement("div");
-    adDiv.innerHTML="<br>"
-    parent.appendChild(adDiv);
-
-    var adScript1 = document.createElement("script");
-    adScript1.text="var googletag = googletag || {};"+
-        "googletag.cmd = googletag.cmd || [];"+
-        "(function () {"+
-        "var gads = document.createElement('script');"+
-        "gads.async = true;"+
-        "gads.type = 'text/javascript';"+
-        "var useSSL = 'https:' == document.location.protocol;"+
-        "gads.src = (useSSL ? 'https:' : 'http:') +"+
-        "'//www.googletagservices.com/tag/js/gpt.js';"+
-        "var node = document.getElementsByTagName('script')[0];"+
-        "node.parentNode.insertBefore(gads, node);"+
-        "})();";
-    adDiv.appendChild(adScript1);
-
-    var adScript2 = document.createElement("script");
-    adScript2.text = "googletag.cmd.push(function() {" +
-        "googletag.defineSlot('/40095566/glyrics_300x250', [300, 250], 'div-gpt-ad-1437284886367-0').addService(googletag.pubads());" +
-        "googletag.enableServices();});";
-    adDiv.appendChild(adScript2);
-
-    var adHolder = document.createElement("div");
-    adHolder.id="div-gpt-ad-1437284886367-0";
-    adHolder.setAttribute("style","height:250px; width:300px;");
-    adDiv.appendChild(adHolder);
-
-    var adScript3=document.createElement("script");
-    adScript3.text="googletag.cmd.push(function() { googletag.display('div-gpt-ad-1437284886367-0'); });";
-    adHolder.appendChild(adScript3);
-
-
-    /*
-    var adScript1 = document.createElement("script");
-    adScript1.async = true;
-    adScript1.src = "//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
-    adDiv.appendChild(adScript1);
-
-    var insElement = document.createElement("ins");
-    insElement.setAttribute("class", "adsbygoogle");
-    insElement.setAttribute("style", "display:inline-block;width:320px;height:100px");
-    insElement.setAttribute("data-ad-client", "ca-pub-8085801308709739");
-    insElement.setAttribute("data-ad-slot", "3851731750");
-    adDiv.appendChild(insElement);
-
-    var adScript2 = document.createElement("script");
-    adScript2.text = "(adsbygoogle = window.adsbygoogle || []).push({});";
-    adDiv.appendChild(adScript2);
-    */
 }

@@ -4,7 +4,7 @@
   "name": "Gaana Lyrics Extension",
   "short_name": "GLyrics Extension",
   "description": "Displays lyrics on Gaana.com, Google Music, Spotify, Pandora, Saavn, SoundCloud, Plex and other streaming music services",
-  "version": "3.8.2",
+  "version": "3.9.1",
   "author": "Samik",
   "icons": {
     "16": "images/icon16.png",
@@ -51,8 +51,7 @@
         "jquery-2.0.3.min.js",
         "jquery-ui.min.js",
         "script.js",
-        "gaana/extract_track_info.js",
-        "gaana/modify_page.js"
+        "gaana/extract_track_info.js"
       ],
       "run_at": "document_end"
     },
@@ -214,7 +213,7 @@
     },
     {
       "matches": [
-        "http://plex.tv/web/*",
+        "https://app.plex.tv/web/*",
         "http://127.0.0.1:32400/*",
         "http://localhost:32400/*"
       ],

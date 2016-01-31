@@ -5,8 +5,8 @@ function fetchTrackInfo() {
 	firstArtist = '';
 	artists = '';
 
-	songName = document.getElementById('player-track-name').innerText;
-	album = document.getElementById('player-album-name').innerText;
+	songName = $('#player-track-name').text().trim();
+	album = $('#player-album-name').text().trim();
 	extractTracksFromPage();
 }
 

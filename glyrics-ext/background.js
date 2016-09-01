@@ -23,7 +23,8 @@ var showForPages = ["*://gaana.com/*",
     "*://jango.com/*",
     "*://deezer.com/*",
     "*://8tracks.com/*",
-    "*://listen.tidal.com/*"
+    "*://listen.tidal.com/*",
+    "*://music.wynk.in/*"
 ];
 
 // Called when the url of a tab changes.
@@ -49,7 +50,8 @@ function checkForValidUrl(tabId, changeInfo, tab) {
             || tab.url.indexOf('jango.com') > -1
             || tab.url.indexOf('deezer.com') > -1
             || tab.url.indexOf('8tracks.com') > -1
-			|| tab.url.indexOf('listen.tidal.com') > -1){
+			|| tab.url.indexOf('listen.tidal.com') > -1
+			|| tab.url.indexOf('music.wynk.in') > -1){
 		// ... show the page action.
 		chrome.pageAction.show(tabId);
 	}

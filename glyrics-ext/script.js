@@ -321,7 +321,7 @@ function checkTrackChange() {
     var prevArtist = firstArtist;
     fetchTrackInfo();
     if (songName !== prevSongName || firstArtist !== prevArtist) {
-        //console.log('GLyrics:: detected track change!');
+        //console.log('glyrics:: new track:'+ songName+' | artist:' + firstArtist)
         if (isLyricWindowVisible) {
             lyricsHeader.innerHTML = "Lyrics | " + songName;
             getLyrics(firstArtist, songName, album);

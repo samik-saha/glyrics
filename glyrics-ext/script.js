@@ -4,7 +4,11 @@
  Injected on supported music services. The purpose of this script is to detect changes in playing track, setup lyrics
  display popup and show lyrics when available. This script is also responsible for informing the Gaana Lyrics App of
  the currently playing track.
+ 
  */
+ 
+ /*global $*/
+ /*global chrome*/
 
 /* Boolean variable to track ifif the lyrics pop up is active */
 var isLyricWindowVisible = false;
@@ -240,6 +244,9 @@ function addAutoStyleCSSLink() {
             break;
         case "listen.tidal.com":
             autoStyleURL = chrome.extension.getURL("tidal/tidal.css");
+            break;
+        case "music.wynk.in":
+            autoStyleURL = chrome.extension.getURL("wynk/wynk.css");
             break;
     }
     autoStyle.setAttribute("href", autoStyleURL);

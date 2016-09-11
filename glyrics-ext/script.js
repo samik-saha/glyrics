@@ -248,6 +248,9 @@ function addAutoStyleCSSLink() {
         case "music.wynk.in":
             autoStyleURL = chrome.extension.getURL("wynk/wynk.css");
             break;
+        case "music.microsoft.com":
+            autoStyleURL = chrome.extension.getURL("groove/groove.css");
+            break;
     }
     autoStyle.setAttribute("href", autoStyleURL);
     document.body.appendChild(autoStyle);

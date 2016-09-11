@@ -10,7 +10,7 @@ var showForPages = ["*://gaana.com/*",
     "*://play.raaga.com/*",
     "*://bop.fm/*",
     "*://soundcloud.com/*",
-    "*://www.amazon.com/gp/dmusic/*",
+    "*://music.amazon.com/*",
     "*://play.google.com/music/*",
     "*://www.earbits.com/*",
 	"*://www.pandora.com/*",
@@ -37,7 +37,7 @@ function checkForValidUrl(tabId, changeInfo, tab) {
 			|| tab.url.indexOf('play.raaga.com') > -1
 			|| tab.url.indexOf('bop.fm') > -1
 			|| tab.url.indexOf('soundcloud.com') > -1
-			|| tab.url.indexOf('amazon.com/gp/dmusic') > -1
+			|| tab.url.indexOf('music.amazon.com') > -1
 			|| tab.url.indexOf('play.google.com/music') > -1
 			|| tab.url.indexOf('earbits.com') > -1
 			|| tab.url.indexOf('pandora.com') > -1

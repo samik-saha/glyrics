@@ -142,7 +142,7 @@
       ]
     },
     {
-      "matches": ["https://www.amazon.com/gp/dmusic/*"],
+      "matches": ["https://music.amazon.com/*"],
       "js": [
         "jquery-2.0.3.min.js",
         "jquery-ui.min.js",

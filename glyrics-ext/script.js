@@ -195,7 +195,7 @@ function addAutoStyleCSSLink() {
         case "www.pandora.com":
             autoStyleURL = chrome.extension.getURL("pandora/pandora.css");
             break;
-        case "www.amazon.com":
+        case "music.amazon.com":
             autoStyleURL = chrome.extension.getURL("amazonmusic/amazonmusic.css");
             break;
         case "soundcloud.com":

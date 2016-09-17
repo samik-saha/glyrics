@@ -9,7 +9,8 @@ for ($i=0; $i -lt $files.Count; $i++) {
     }
     else{
         echo "Copying $infile to $outfile"
-        cp $infile $outfile
+        New-Item -ItemType File -Path $outfile -Force
+        Copy-Item $infile $outfile -Force
     }
 }
 echo "Done!"

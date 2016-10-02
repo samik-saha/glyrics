@@ -4,7 +4,7 @@
   "name": "Gaana Lyrics Extension",
   "short_name": "GLyrics Extension",
   "description": "Displays lyrics on Gaana.com, Google Music, Spotify, Pandora, Saavn, SoundCloud, Plex and other streaming music services",
-  "version": "3.9.3",
+  "version": "3.9.4",
   "author": "Samik",
   "icons": {
     "16": "images/icon16.png",
@@ -42,7 +42,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["http://gaana.com/*"],
+      "matches": ["*://gaana.com/*"],
       "css": [
         "css/lyrics.css",
         "css/jquery-ui.min.css"
@@ -57,7 +57,7 @@
     },
     {
       "matches": [
-        "http://www.accuradio.com/*"
+        "*://www.accuradio.com/*"
       ],
       "js": [
         "jquery-2.0.3.min.js",
@@ -72,7 +72,7 @@
       ]
     },
     {
-      "matches": ["http://www.saavn.com/*"],
+      "matches": ["*://www.saavn.com/*"],
       "js": [
         "jquery-2.0.3.min.js",
         "jquery-ui.min.js",
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "matches": ["http://play.raaga.com/*"],
+      "matches": ["*://play.raaga.com/*"],
       "js": [
         "jquery-2.0.3.min.js",
         "jquery-ui.min.js",
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "matches": ["http://www.earbits.com/*"],
+      "matches": ["*://www.earbits.com/*"],
       "js": [
         "jquery-2.0.3.min.js",
         "jquery-ui.min.js",
@@ -184,7 +184,7 @@
       ]
     },
     {
-      "matches": ["http://www.pandora.com/*"],
+      "matches": ["*://www.pandora.com/*"],
       "js": [
         "jquery-2.0.3.min.js",
         "jquery-ui.min.js",
@@ -198,7 +198,7 @@
       ]
     },
     {
-      "matches": ["http://www.rdio.com/*"],
+      "matches": ["*://www.rdio.com/*"],
       "js": [
         "jquery-2.0.3.min.js",
         "jquery-ui.min.js",
@@ -247,7 +247,7 @@
     },
     {
       "matches": [
-        "http://www.slacker.com/*"
+        "*://www.slacker.com/*"
       ],
       "js": [
         "jquery-2.0.3.min.js",
@@ -263,7 +263,7 @@
     },
     {
       "matches": [
-        "http://www.jango.com/*"
+        "*://www.jango.com/*"
       ],
       "js": [
         "jquery-2.0.3.min.js",
@@ -279,7 +279,7 @@
     },
     {
       "matches": [
-        "http://www.deezer.com/*"
+        "*://www.deezer.com/*"
       ],
       "js": [
         "jquery-2.0.3.min.js",
@@ -295,7 +295,7 @@
     },
     {
       "matches": [
-        "http://8tracks.com/*"
+        "*://8tracks.com/*"
       ],
       "js": [
         "jquery-2.0.3.min.js",

@@ -191,7 +191,7 @@ function getLyricURL(artist, title) {
 										+ artist
 										+ ' lyrics">Search Google</a>).<br>'
 										+ 'Please add lyrics at ' + '<a href="'
-										+ songURL
+										+ songURL.replace(/<[^>]*>?/g, '')
 										+ '" target="_blank">LyricWiki</a>.'
 							};
 							chrome.tabs.sendMessage(msgFromTabId, pass_data);

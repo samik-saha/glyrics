@@ -4,7 +4,7 @@
   "name": "Gaana Lyrics Extension",
   "short_name": "GLyrics Extension",
   "description": "Displays lyrics on Gaana.com, Google Music, Spotify, Pandora, Saavn, SoundCloud, Plex and other streaming music services",
-  "version": "3.9.4",
+  "version": "3.9.5",
   "author": "Samik",
   "icons": {
     "16": "images/icon16.png",

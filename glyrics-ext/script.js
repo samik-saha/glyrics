@@ -227,9 +227,9 @@ function showLyrics() {
 
     // reposition lyrics window
     div.style.position = 'fixed';
-    div.style.left = 'auto';
+    div.style.left = ((window.innerWidth * 5 / 6) - 340) + 'px';
     div.style.top = (window.innerHeight / 6) + 'px';
-    div.style.right = (window.innerWidth / 6) + 'px';
+    div.style.right = 'auto';
 }
 
 /*

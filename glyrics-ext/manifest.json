@@ -42,7 +42,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://gaana.com/*"],
+      "matches": [ "*://gaana.com/*" ],
       "css": [
         "css/lyrics.css",
         "css/jquery-ui.min.css"
@@ -56,9 +56,7 @@
       "run_at": "document_end"
     },
     {
-      "matches": [
-        "*://www.accuradio.com/*"
-      ],
+      "matches": [ "*://www.accuradio.com/*" ],
       "js": [
         "jquery-2.0.3.min.js",
         "jquery-ui.min.js",
@@ -114,21 +112,7 @@
       ]
     },
     {
-      "matches": ["https://bop.fm/*"],
-      "js": [
-        "jquery-2.0.3.min.js",
-        "jquery-ui.min.js",
-        "script.js",
-        "bop.fm/extract_track_info.js"
-      ],
-      "run_at": "document_end",
-      "css": [
-        "css/lyrics.css",
-        "css/jquery-ui.min.css"
-      ]
-    },
-    {
-      "matches": ["https://soundcloud.com/*"],
+      "matches": ["*://soundcloud.com/*"],
       "js": [
         "jquery-2.0.3.min.js",
         "jquery-ui.min.js",
@@ -142,7 +126,7 @@
       ]
     },
     {
-      "matches": ["https://music.amazon.com/*"],
+      "matches": ["*://music.amazon.com/*"],
       "js": [
         "jquery-2.0.3.min.js",
         "jquery-ui.min.js",
@@ -156,7 +140,7 @@
       ]
     },
     {
-      "matches": ["https://play.google.com/music/*"],
+      "matches": ["*://play.google.com/music/*"],
       "js": [
         "jquery-2.0.3.min.js",
         "jquery-ui.min.js",
@@ -198,20 +182,6 @@
       ]
     },
     {
-      "matches": ["*://www.rdio.com/*"],
-      "js": [
-        "jquery-2.0.3.min.js",
-        "jquery-ui.min.js",
-        "script.js",
-        "rdio/extract_track_info.js"
-      ],
-      "run_at": "document_end",
-      "css": [
-        "css/lyrics.css",
-        "css/jquery-ui.min.css"
-      ]
-    },
-    {
       "matches": [
         "https://app.plex.tv/web/*",
         "http://127.0.0.1:32400/*",
@@ -230,25 +200,7 @@
       ]
     },
     {
-      "matches": [
-        "*://app.rhapsody.com/*"
-      ],
-      "js": [
-        "jquery-2.0.3.min.js",
-        "jquery-ui.min.js",
-        "script.js",
-        "rhapsody/extract_track_info.js"
-      ],
-      "run_at": "document_end",
-      "css": [
-        "css/lyrics.css",
-        "css/jquery-ui.min.css"
-      ]
-    },
-    {
-      "matches": [
-        "*://www.slacker.com/*"
-      ],
+      "matches": [ "*://www.slacker.com/*" ],
       "js": [
         "jquery-2.0.3.min.js",
         "jquery-ui.min.js",
@@ -262,9 +214,7 @@
       ]
     },
     {
-      "matches": [
-        "*://www.jango.com/*"
-      ],
+      "matches": [ "*://www.jango.com/*" ],
       "js": [
         "jquery-2.0.3.min.js",
         "jquery-ui.min.js",
@@ -278,9 +228,7 @@
       ]
     },
     {
-      "matches": [
-        "*://www.deezer.com/*"
-      ],
+      "matches": [ "*://www.deezer.com/*" ],
       "js": [
         "jquery-2.0.3.min.js",
         "jquery-ui.min.js",
@@ -294,9 +242,7 @@
       ]
     },
     {
-      "matches": [
-        "*://8tracks.com/*"
-      ],
+      "matches": [ "*://8tracks.com/*" ],
       "js": [
         "jquery-2.0.3.min.js",
         "jquery-ui.min.js",
@@ -310,9 +256,7 @@
       ]
     },
     {
-      "matches": [
-        "*://listen.tidal.com/*"
-      ],
+      "matches": [ "*://listen.tidal.com/*" ],
       "js": [
         "jquery-2.0.3.min.js",
         "jquery-ui.min.js",
@@ -326,9 +270,7 @@
       ]
     },
     {
-      "matches": [
-        "https://music.wynk.in/*"
-      ],
+      "matches": [ "*://music.wynk.in/*" ],
       "js": [
         "jquery-2.0.3.min.js",
         "jquery-ui.min.js",
@@ -342,9 +284,7 @@
       ]
     },
     {
-      "matches": [
-        "https://music.microsoft.com/*"
-      ],
+      "matches": [ "*://music.microsoft.com/*" ],
       "js": [
         "jquery-2.0.3.min.js",
         "jquery-ui.min.js",

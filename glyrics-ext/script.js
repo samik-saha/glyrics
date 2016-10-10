@@ -263,25 +263,16 @@ function addAutoStyleCSSLink() {
         case "www.earbits.com":
             autoStyleURL = chrome.extension.getURL("earbits/earbits.css");
             break;
-        case "bop.fm":
-            autoStyleURL = chrome.extension.getURL("bop.fm/bop.fm.css");
-            break;
         case "play.google.com":
             autoStyleURL = chrome.extension.getURL("googlemusic/googlemusic.css");
             break;
         case "play.raaga.com":
             autoStyleURL = chrome.extension.getURL("raaga/raaga.css");
             break;
-        case "www.rdio.com":
-            autoStyleURL = chrome.extension.getURL("rdio/rdio.css");
-            break;
         case "app.plex.tv":
         case "127.0.0.1":
         case "localhost":
             autoStyleURL = chrome.extension.getURL("plex/plex.css");
-            break;
-        case "app.rhapsody.com":
-            autoStyleURL = chrome.extension.getURL("rhapsody/rhapsody.css");
             break;
         case "www.accuradio.com":
             autoStyleURL = chrome.extension.getURL("AccuRadio/AccuRadio.css");

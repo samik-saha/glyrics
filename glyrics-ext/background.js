@@ -8,17 +8,14 @@ var showForPages = ["*://gaana.com/*",
     "*://play.spotify.com/*",
     "*://player.spotify.com/*",
     "*://play.raaga.com/*",
-    "*://bop.fm/*",
     "*://soundcloud.com/*",
     "*://music.amazon.com/*",
     "*://play.google.com/music/*",
     "*://www.earbits.com/*",
 	"*://www.pandora.com/*",
-    "*://www.rdio.com/*",
     "*://plex.tv/web/*",
     "*://127.0.0.1/web/*",
     "*://localhost/web/*",
-    "*://app.rhapsody.com/*",
     "*://www.accuradio.com/*",
     "*://jango.com/*",
     "*://deezer.com/*",
@@ -35,17 +32,14 @@ function checkForValidUrl(tabId, changeInfo, tab) {
             || tab.url.indexOf('play.spotify.com') > -1
 			|| tab.url.indexOf('player.spotify.com') > -1
 			|| tab.url.indexOf('play.raaga.com') > -1
-			|| tab.url.indexOf('bop.fm') > -1
 			|| tab.url.indexOf('soundcloud.com') > -1
 			|| tab.url.indexOf('music.amazon.com') > -1
 			|| tab.url.indexOf('play.google.com/music') > -1
 			|| tab.url.indexOf('earbits.com') > -1
 			|| tab.url.indexOf('pandora.com') > -1
-            || tab.url.indexOf('rdio.com') > -1
             || tab.url.indexOf('plex.tv/web') > -1
             || tab.url.indexOf('127.0.0.1:32400/web') > -1
             || tab.url.indexOf('localhost:32400/web') > -1
-            || tab.url.indexOf('app.rhapsody.com') > -1
             || tab.url.indexOf('accuradio.com') > -1
             || tab.url.indexOf('slacker.com') > -1
             || tab.url.indexOf('jango.com') > -1
@@ -191,7 +185,7 @@ function getLyricURL(artist, title) {
 										+ artist
 										+ ' lyrics">Search Google</a>).<br>'
 										+ 'Please add lyrics at ' + '<a href="'
-										+ songURL
+										+ songURL.replace(/<[^>]*>?/g, '')
 										+ '" target="_blank">LyricWiki</a>.'
 							};
 							chrome.tabs.sendMessage(msgFromTabId, pass_data);

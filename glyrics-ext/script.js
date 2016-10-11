@@ -10,7 +10,7 @@
  /*global $*/
  /*global chrome*/
 
-/* Boolean variable to track ifif the lyrics pop up is active */
+/* Boolean variable to track if the lyrics pop up is active */
 var isLyricWindowVisible = false;
 /* Tracks the current track title */
 var songName = '';
@@ -30,6 +30,59 @@ var div;
 var searchElement;
 /* link element to the music page specific CSS file. Removed from document when the pop up is closed. */
 var autoStyle;
+
+/* Safe Response code from https://github.com/operatester/safeResponse/blob/1.1/safeResponse.js */
+safeResponse = function(){
+
+    var validAttrs = [  "class", "id", "href", "style", "target" ];
+    
+    this.__removeInvalidAttributes = function(target) {
+        var attrs = target.attributes, currentAttr;
+
+        for (var i = attrs.length - 1; i >= 0; i--) {
+            currentAttr = attrs[i].name;
+
+            if (attrs[i].specified && validAttrs.indexOf(currentAttr) === -1) {
+                target.removeAttribute(currentAttr);
+            }
+
+            if (
+                currentAttr === "href" &&
+                /^(#|javascript[:])/gi.test(target.getAttribute("href"))
+            ) {
+                target.parentNode.removeChild(target);
+            }
+        }
+    }
+    
+    this.__cleanDomString = function(data) {
+        var parser = new DOMParser;
+        var tmpDom = parser.parseFromString(data, "text/html").body;
+
+        var list, current, currentHref;
+
+        list = tmpDom.querySelectorAll("script,img");
+
+        for (var i = list.length - 1; i >= 0; i--) {
+            current = list[i];
+            current.parentNode.removeChild(current);
+        }
+
+        list = tmpDom.getElementsByTagName("*");
+
+        for (i = list.length - 1; i >= 0; i--) {
+            parent.__removeInvalidAttributes(list[i]);
+        }
+
+        return tmpDom.innerHTML;
+    }
+    
+    return{
+        cleanDomString: function(html){
+            return parent.__cleanDomString(html)
+        }
+    }
+}();
 
 /*
  * Set up a timer to detect track changes. If a track change is detected it
@@ -56,13 +109,16 @@ chrome.runtime.onMessage.addListener(function (request) {
 
     /* lyrics returned from background page */
     else if (request.msgType === "lyrics") {
-        contentDiv.innerHTML = '<div id="glyrics-text">' + request.lyrics + '</div>';
-        lyricsHeader.innerHTML = 'Lyrics | ' + lyricTitle + ' <em>by</em> '
+    	var lyrics_text=safeResponse.cleanDomString(request.lyrics);
+        contentDiv.innerHTML = '<div id="glyrics-text">' + lyrics_text + '</div>';
+    	
+        lyricsHeader.innerHTML = 'Lyrics | ' + lyricTitle.replace(/<[^>]*>?/g, '') + ' <em>by</em> '
         + lyricArtist;
     }
     /* error information returned from background page */
     else if (request.msgType === "displayError") {
-        contentDiv.innerHTML = request.message;
+    	var error_message=safeResponse.cleanDomString(request.message);
+        contentDiv.innerHTML = error_message;
         if (request.msgAction === 'searchOnLyricWiki') {
             searchOnLiricWiki(songName);
         }
@@ -171,9 +227,9 @@ function showLyrics() {
 
     // reposition lyrics window
     div.style.position = 'fixed';
-    div.style.left = 'auto';
+    div.style.left = ((window.innerWidth * 5 / 6) - 340) + 'px';
     div.style.top = (window.innerHeight / 6) + 'px';
-    div.style.right = (window.innerWidth / 6) + 'px';
+    div.style.right = 'auto';
 }
 
 /*
@@ -207,25 +263,16 @@ function addAutoStyleCSSLink() {
         case "www.earbits.com":
             autoStyleURL = chrome.extension.getURL("earbits/earbits.css");
             break;
-        case "bop.fm":
-            autoStyleURL = chrome.extension.getURL("bop.fm/bop.fm.css");
-            break;
         case "play.google.com":
             autoStyleURL = chrome.extension.getURL("googlemusic/googlemusic.css");
             break;
         case "play.raaga.com":
             autoStyleURL = chrome.extension.getURL("raaga/raaga.css");
             break;
-        case "www.rdio.com":
-            autoStyleURL = chrome.extension.getURL("rdio/rdio.css");
-            break;
         case "app.plex.tv":
         case "127.0.0.1":
         case "localhost":
             autoStyleURL = chrome.extension.getURL("plex/plex.css");
-            break;
-        case "app.rhapsody.com":
-            autoStyleURL = chrome.extension.getURL("rhapsody/rhapsody.css");
             break;
         case "www.accuradio.com":
             autoStyleURL = chrome.extension.getURL("AccuRadio/AccuRadio.css");
@@ -378,7 +425,7 @@ function displaySearchResults(lwSearchResults) {
             var result = document.createElement('a');
             result.setAttribute('href', lwSearchResults[i].link);
             result.setAttribute('target', '_blank');
-            result.innerHTML = lwSearchResults[i].title;
+            result.innerHTML = lwSearchResults[i].title.replace(/<[^>]*>?/g, '');
             result.onclick = function () {
                 // do not follow the link
                 event.returnValue = false;
@@ -401,6 +448,9 @@ function displaySearchResults(lwSearchResults) {
  are blocked if the music page is loaded over HTTPS.
  */
 function getLyrics(artist, title, album) {
+	title = title.replace(/<[^>]*>?/g, '');
+	artist = artist.replace(/<[^>]*>?/g, '');
+	
     // check if title is present
     if (!title) {
         contentDiv.innerHTML = 'Song title is missing. Cannot search for lyrics.';
@@ -430,6 +480,7 @@ function getLyrics(artist, title, album) {
     contentDiv.innerHTML = 'Searching lyrics for "' + title + '" by "'
     + artist + '" ...';
 
+    //Set Global variables
     lyricArtist = artist;
     lyricTitle = title;
 

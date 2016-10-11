@@ -1,20 +1,79 @@
-#header {
-}
-h2 {
+body {
 	margin: 0px;
 }
 
-h4 {
-	margin-bottom: 5px;
-	margin-top: 0px;
-	margin-left: 0px;
-	margin-right: 0px;
+#actionbar {
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	height: 40px;
+	background-color: #ffcd35;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	font-size: 16px;
+	padding-left: 10px;
 }
+
+#header {
+	display: block;
+	height: 40px;
+	line-height: 40px; /* center vertically */
+	width: calc(100% - 80px);
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow-x: hidden;
+    -webkit-user-select: text;
+    cursor: text;
+}
+
+#content-viewport {
+	background-color: #eeeeee;
+	position: fixed;
+	top: 40px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	overflow-y: auto;
+	z-index: 1;
+}
+
+#content-viewport::-webkit-scrollbar {
+	width: 8px;
+}
+
+#content-viewport::-webkit-scrollbar-thumb {
+	border: 1px solid silver;
+	border-radius: 8px;
+	background-color: silver;
+}
+
+#content-viewport::-webkit-scrollbar-track {
+	background-color: #eeeeee;
+}
+
+#content-viewport::-webkit-scrollbar-corner {
+	background-color: white;
+}
+
+#content {
+	position: static;
+	margin: 8px 8px 8px 8px;
+	padding: 8px 8px 8px 8px;
+	background-color: #ffffff;
+	box-shadow: 0px 1px 1px 0px #aaaaaa;
+    -webkit-user-select: text;
+    cursor: text;
+}
+
+
 
 article {
 	height: 100%;
 	overflow: auto;
+	font-size: 14px;
 }
+
 hr {
 	display: block;
 	height: 1px;
@@ -27,3 +86,99 @@ hr {
 p {
 	margin: 0 0;
 }
+
+.float-right {
+	float: right;
+}
+
+.display-none {
+	display:none;
+}
+
+dropdown {
+	text-align: right;
+	display: block;
+	margin: 0px 0px;
+	position: fixed;
+	top: 7px;
+	right: 5px;
+	z-index: 2;
+}
+
+dropdown ul {
+	margin: 0px;
+	box-shadow: 0px 1px 1px 0px #aaaaaa;
+}
+
+dropdown ul li {
+	display: block;
+	width: 150px;
+	background: #F0ECE0;
+	padding: 5px 5px;
+	text-align: left;
+}
+
+dropdown ul li:hover {
+	background: orange;
+	cursor: pointer;
+}
+
+dropdown label {
+	text-align: center;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: transparent;
+	padding: 3px 3px 3px 3px;
+	position: relative;
+}
+
+dropdown label img{
+	vertical-align: middle;
+}
+
+dropdown label:hover{
+	background: threedlightshadow;
+	color: white;
+	cursor: pointer;
+}
+
+dropdown input {
+	display: none;
+}
+
+dropdown input ~ ul {
+	position: relative;
+	visibility: hidden;
+	opacity: 0;
+	top: -20px;
+	padding: 0px;
+	display: none;
+}
+
+dropdown input:checked+label {
+	background: threedlightshadow;
+	color: white;
+}
+
+
+dropdown input:checked ~ ul {
+	display: block;
+	visibility: visible;
+	opacity: 1;
+	top: 0;
+}
+
+.animate {
+	-webkit-transition: all .3s;
+	-moz-transition: all .3s;
+	-ms-transition: all .3s;
+	-ms-transition: all .3s;
+	transition: all .3s;
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden; /* Chrome and Safari */
+	-moz-backface-visibility: hidden; /* Firefox */
+	-ms-backface-visibility: hidden; /* Internet Explorer */
+}
+
+

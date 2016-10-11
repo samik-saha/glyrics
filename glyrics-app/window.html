@@ -1,38 +1,105 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <script src="window.js"></script>
-        <script src="jquery-2.0.3.min.js"></script>
-        <link rel="stylesheet" href="window.css">
-        <title>Gaana Lyrics</title>
-    </head>
-    <body>
-        <div id="header">
-            <h2>Play a song!</h2>
-        </div>
-        <hr>
+<head>
+    <script src="window.js"></script>
+    <script src="jquery-2.0.3.min.js"></script>
+    <script src="jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="jquery-ui.min.css">
+    <link rel="stylesheet" href="window.css">
+    <title>Gaana Lyrics</title>
+</head>
+<body>
+<div id="actionbar">
+		<span id="header">
+			Gaana Lyrics - Play a song!
+		</span>
+
+</div>
+
+<dropdown>
+    <input id="toggle1" type="checkbox">
+    <label id="menu-btn" for="toggle1" class="animate"><img class="icon" src="images/3-dots.png"/></label>
+    <ul class="animate">
+        <li class="window-on-top">Keep window on top<span class="symbol float-right">&#10004;</span></li>
+        <!-- li class="change-style">Change Display Style</--li -->
+        <li class="reload">Reload lyrics</li>
+        <li class="feedback">Feedback</li>
+    </ul>
+</dropdown>
+
+<div id="content-viewport">
+    <div id="content">
         <article id="main">
             <p id="ext-note">
-                <b>Note</b>: The app requires the Gaana Lyrics <b>extension</b>
-                to be installed to retrieve track information. If you do not have the extension
-                installed please <a href="https://chrome.google.com/webstore/detail/gaana-lyrics/indphkjgcbdoaigcjlaaokkfllleolli" target="_blank">install it</a> now.
-                <br><br>
+                <b>Note</b>: The app requires the Gaana Lyrics <b>extension</b> to
+                be installed to retrieve track information. If you do not have the
+                extension installed please <a
+                    href="https://chrome.google.com/webstore/detail/gaana-lyrics/indphkjgcbdoaigcjlaaokkfllleolli"
+                    target="_blank">install it</a> now. <br> <br>
             </p>
-            <p>To view lyrics play a song in any of the below music services in Chrome:</p>
+
+            <p>To view lyrics play a song in any of the below music services
+                in Chrome:</p>
             <ul>
-                <li>
-                    <a id="gaana_link" href="http://gaana.com" target="_blank">Gaana.com</a>
+                <li><a id="gaana_link" href="http://gaana.com" target="_blank">Gaana.com</a>
                 </li>
-                <li>
-                    <a id="grooveshark_link" href="http://grooveshark.com" target="_blank">Grooveshark</a>
+                <li><a id="spotify_link" href="https://play.spotify.com"
+                       target="_blank">Spotify</a></li>
+                <li><a id="saavn_link" href="http://saavn.com" target="_blank">Saavn</a>
                 </li>
-                <li>
-                    <a id="spotify_link" href="https://play.spotify.com" target="_blank">Spotify</a>
+                <li><a id="SoundCloud" href="https://soundcloud.com" target="_blank">SoundCloud</a>
                 </li>
-                <li>
-                    <a id = "saavn_link" href="http://saavn.com" target="_blank">Saavn</a>
+                <li><a href="http://play.raaga.com" target="_blank">Raaga</a>
+                </li>
+                <li><a href="https://bop.fm" target="_blank">bop.fm</a>
+                </li>
+                <li><a id="googlemusic_link" href="https://play.google.com/music" target="_blank">Google Music</a>
+                </li>
+                <li><a id="earbits_link" href="http://www.earbits.com" target="_blank">Earbits</a>
+                </li>
+                <li><a href="https://www.amazon.com/gp/dmusic/cloudplayer/web" target="_blank">Amazon Prime Music</a>
+                </li>
+                <li><a href="http://www.pandora.com" target="_blank">Pandora Radio</a>
+                </li>
+                <li><a href="http://www.rdio.com" target="_blank">Rdio</a>
+                </li>
+                <li><a href="http://plex.tv/web" target="_blank">Plex Web</a>
+                </li>
+                <li><a href="http://www.rhapsody.com" target="_blank">Rhapsody</a>
+                </li>
+                <li><a href="http://www.accuradio.com" target="_blank">AccuRadio</a>
+                </li>
+                <li><a href="http://www.slacker.com" target="_blank">Slacker Radio</a>
+                </li>
+                <li><a href="http://www.jango.com" target="_blank">Jango</a>
+                </li>
+                <li><a href="http://8tracks.com" target="_blank">8tracks</a>
+                </li>
+                <li><a href="http://www.deezer.com" target="_blank">Deezer</a>
+                </li>
+                <li><a href="http://tidal.com" target="_blank">Tidal</a>
                 </li>
             </ul>
         </article>
-    </body>
+    </div>
+</div>
+
+<div id="dialog-form" title="Create new user">
+    <p class="validateTips">All form fields are required.</p>
+
+    <form>
+        <fieldset>
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" value="Jane Smith" class="text ui-widget-content ui-corner-all">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" value="jane@smith.com" class="text ui-widget-content ui-corner-all">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" value="xxxxxxx" class="text ui-widget-content ui-corner-all">
+
+            <!-- Allow form submission with keyboard without duplicating the dialog button -->
+            <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+        </fieldset>
+    </form>
+</div>
+</body>
 </html>

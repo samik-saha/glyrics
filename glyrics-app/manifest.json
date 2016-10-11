@@ -1,9 +1,9 @@
 {
-  "name": "Gaana Lyrics",
-  "short_name": "GLyrics",
-  "description": "Displays lyrics in a foreground window for online music services",
+  "name": "Gaana Lyrics App",
+  "short_name": "Gaana Lyrics",
+  "description": "View lyrics in a always-on-top window for Gaana.com, Saavn, Spotify, Google Music, Rdio, and others. (Requires GLyrics Extension)",
   "author": "Samik",
-  "version": "1.1",
+  "version": "2.6",
   "app": {
     "background": {
       "scripts": ["background.js"]
@@ -17,6 +17,7 @@
   "permissions": [
   		"http://*/*",
 		"https://*/*",
-		"alwaysOnTopWindows"
+		"alwaysOnTopWindows",
+		"storage"
 		]
 }

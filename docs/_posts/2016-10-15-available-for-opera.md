@@ -6,4 +6,6 @@ date: 2016-05-20 21:11:27
 author: jekyll
 ---
 
-The extension went live at the Opera add-ons store after a extensive review process by Opera team. Please checkout the new extension at https://addons.opera.com/en/extensions/details/gaana-lyrics-extension.
+The extension went live at the Opera add-ons store after a extensive review process by Opera team. Please checkout the new extension at [opera-addon-link][https://addons.opera.com/en/extensions/details/gaana-lyrics-extension].
+
+[opera-addon-link]:https://addons.opera.com/en/extensions/details/gaana-lyrics-extension

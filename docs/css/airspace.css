@@ -138,7 +138,7 @@ font header .navbar-default .navbar-nav li a:hover {
 	wrapper Start
 --*/
 #intro {
-  padding: 100px 0;
+  padding: 30px 0;
 }
 #intro .block h2 {
   padding-top: 35px;
@@ -164,7 +164,7 @@ font header .navbar-default .navbar-nav li a:hover {
 --*/
 #service {
   text-align: center;
-  padding: 90px 0;
+  padding: 20px 0;
 }
 #service .service-item {
   padding-bottom: 30px;
@@ -192,7 +192,7 @@ font header .navbar-default .navbar-nav li a:hover {
   background: url("../img/call-to-action-bg.jpg") no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  padding: 70px 0px;
+  padding: 10px 0px;
   position: relative;
   text-align: center;
   color: #fff;
@@ -250,7 +250,7 @@ font header .navbar-default .navbar-nav li a:hover {
   box-sizing: border-box;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  padding: 100px 0;
+  padding: 30px 0;
 }
 
 #feature:before {
@@ -283,7 +283,7 @@ font header .navbar-default .navbar-nav li a:hover {
 	content Start
 --*/
 #testimonial {
-  padding: 100px 0;
+  padding: 30px 0;
 }
 #testimonial .block h2 {
   line-height: 27px;

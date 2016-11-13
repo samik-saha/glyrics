@@ -17,7 +17,7 @@ var hostNames = [
 	"127.0.0.1",
 	"localhost",
 	"www.accuradio.com",
-	"jango.com",
+	"www.jango.com",
 	"deezer.com",
 	"8tracks.com",
 	"listen.tidal.com",

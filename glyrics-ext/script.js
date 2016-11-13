@@ -453,20 +453,20 @@ function getLyrics(artist, title, album) {
 	
     // check if title is present
     if (!title) {
-        contentDiv.innerHTML = 'Song title is missing. Cannot search for lyrics.';
+        contentDiv.innerHTML = 'No tracks detected. Play some music to view lyrics.';
         return;
     }
 
     /* If artist is missing try to get artist name from MusicBrainz */
     if (!artist) {
-        contentDiv.innerHTML = 'Artist is missing! Searching for Artist Name on MusicBrainz...';
+        contentDiv.innerHTML = 'Artist name is missing! Searching for artist on MusicBrainz...';
         callBackgroundScript("getArtistFromMusicBrainz", [title, album]);
         return;
     }
 
     // Artist could not be retrieved from MusicBrainz as well
     if (artist === 'Not Found') {
-        contentDiv.innerHTML = 'Artist not found! Cannot locate lyrics for <b>'
+        contentDiv.innerHTML = 'Could not find artist for this track! Cannot locate lyrics for <b>'
         + title
         + '</b>'
         + ' (<a target="_blank" href="https://www.google.com/search?q='
@@ -477,8 +477,7 @@ function getLyrics(artist, title, album) {
     }
 
     lyricsHeader.innerHTML = "Lyrics | " + title + ' <em>by</em> ' + artist;
-    contentDiv.innerHTML = 'Searching lyrics for "' + title + '" by "'
-    + artist + '" ...';
+    contentDiv.innerHTML = 'Searching lyrics for "' + title + '" by "' + artist + '" ...';
 
     //Set Global variables
     lyricArtist = artist;

@@ -5,6 +5,7 @@ var title;
 
 var showForPages = ["*://gaana.com/*",
     "*://www.saavn.com/*",
+	"*://open.spotify.com/*",
     "*://play.spotify.com/*",
     "*://player.spotify.com/*",
     "*://play.raaga.com/*",
@@ -29,6 +30,7 @@ var showForPages = ["*://gaana.com/*",
 function checkForValidUrl(tabId, changeInfo, tab) {
 	if (tab.url.indexOf('gaana.com') > -1
 			|| tab.url.indexOf('saavn.com') > -1
+			|| tab.url.indexOf('open.spotify.com') > -1
             || tab.url.indexOf('play.spotify.com') > -1
 			|| tab.url.indexOf('player.spotify.com') > -1
 			|| tab.url.indexOf('play.raaga.com') > -1

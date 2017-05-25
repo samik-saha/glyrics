@@ -11,9 +11,13 @@ function fetchTrackInfo() {
         trackName = $('#app-player').contents().find('#track-name a:first').text().trim();
         trackArtist = $('#app-player').contents().find('#track-artist a:first').text().trim();
     }
-    else {
+    else if (window.location.hostname == "player.spotify.com") {
         trackName = $('#main').contents().find('#view-now-playing .track span:first').text().trim();
         trackArtist = $('#main').contents().find('#view-now-playing .artist span:first').text().trim();
+    }
+    else {
+        trackName = $(".track-info .track-info__name").text().trim();
+        trackArtist = $(".track-info .track-info__artists").text().trim();
     }
 
     window.songName = trackName;

@@ -244,6 +244,7 @@ function addAutoStyleCSSLink() {
         case "gaana.com":
             autoStyleURL = chrome.extension.getURL("gaana/gaana.css");
             break;
+        case "open.spotify.com":
         case "play.spotify.com":
         case "player.spotify.com":
             autoStyleURL = chrome.extension.getURL("spotify/spotify.css");

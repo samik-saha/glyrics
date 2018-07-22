@@ -3,59 +3,46 @@ var msgFromTabId;
 var trackInfoMessage;
 var title;
 
-var showForPages = ["*://gaana.com/*",
-    "*://www.saavn.com/*",
-	"*://open.spotify.com/*",
-    "*://play.spotify.com/*",
-    "*://player.spotify.com/*",
-    "*://play.raaga.com/*",
-    "*://soundcloud.com/*",
-    "*://music.amazon.com/*",
-    "*://play.google.com/music/*",
-    "*://www.earbits.com/*",
-	"*://www.pandora.com/*",
-    "*://plex.tv/web/*",
-    "*://127.0.0.1/web/*",
-    "*://localhost/web/*",
-    "*://www.accuradio.com/*",
-    "*://jango.com/*",
-    "*://deezer.com/*",
-    "*://8tracks.com/*",
-    "*://listen.tidal.com/*",
-    "*://music.wynk.in/*",
-    "*://music.microsoft.com/*"
+var hostNames = [
+	"gaana.com",
+	"www.saavn.com",
+	"play.spotify.com",
+	"player.spotify.com",
+	"play.raaga.com",
+	"soundcloud.com",
+	"music.amazon.com",
+	"play.google.com",
+	"www.earbits.com",
+	"www.pandora.com",
+	"plex.tv",
+	"127.0.0.1",
+	"localhost",
+	"www.accuradio.com",
+	"www.jango.com",
+	"deezer.com",
+	"8tracks.com",
+	"listen.tidal.com",
+	"music.wynk.in",
+	"music.microsoft.com"
 ];
 
-// Called when the url of a tab changes.
-function checkForValidUrl(tabId, changeInfo, tab) {
-	if (tab.url.indexOf('gaana.com') > -1
-			|| tab.url.indexOf('saavn.com') > -1
-			|| tab.url.indexOf('open.spotify.com') > -1
-            || tab.url.indexOf('play.spotify.com') > -1
-			|| tab.url.indexOf('player.spotify.com') > -1
-			|| tab.url.indexOf('play.raaga.com') > -1
-			|| tab.url.indexOf('soundcloud.com') > -1
-			|| tab.url.indexOf('music.amazon.com') > -1
-			|| tab.url.indexOf('play.google.com/music') > -1
-			|| tab.url.indexOf('earbits.com') > -1
-			|| tab.url.indexOf('pandora.com') > -1
-            || tab.url.indexOf('plex.tv/web') > -1
-            || tab.url.indexOf('127.0.0.1:32400/web') > -1
-            || tab.url.indexOf('localhost:32400/web') > -1
-            || tab.url.indexOf('accuradio.com') > -1
-            || tab.url.indexOf('slacker.com') > -1
-            || tab.url.indexOf('jango.com') > -1
-            || tab.url.indexOf('deezer.com') > -1
-            || tab.url.indexOf('8tracks.com') > -1
-			|| tab.url.indexOf('listen.tidal.com') > -1
-			|| tab.url.indexOf('music.wynk.in') > -1
-			|| tab.url.indexOf('music.microsoft.com') > -1){
-		// ... show the page action.
-		chrome.pageAction.show(tabId);
-	}
-}
+/* Create url patterns required to create context menu */
+var urlPatterns = hostNames.map(function(host){
+	return "*://" + host + "/*";
+});
 
+/* Build condition for each hostname */
+var conditions = hostNames.map(function(host){
+	return new chrome.declarativeContent.PageStateMatcher({
+		pageUrl: {hostEquals: host}
+	});
+});
 
+/* Create rules for showing page action */
+var rules = {
+	conditions: conditions,
+	actions: [ new chrome.declarativeContent.ShowPageAction() ]
+};
 
 function iconClicked(tab) {
 	//console.log("GLyrics: pageAction clicked");
@@ -76,16 +63,29 @@ function iconClicked(tab) {
 	}
 
 }
+
 function contextMenuOnClicked(info, tab)
 {
-	iconClicked(tab);
+	if(info.menuItemId === "glyrics-menu"){
+		iconClicked(tab);
+	}
 }
 
 chrome.pageAction.onClicked.addListener(iconClicked);
-chrome.contextMenus.create({"contexts":["all"],"title":"Gaana Lyrics","documentUrlPatterns":showForPages, "onclick":contextMenuOnClicked});
+chrome.runtime.onInstalled.addListener(function(){
+	chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
+		chrome.declarativeContent.onPageChanged.addRules([ rules ]);
+        });
+	chrome.contextMenus.create({
+		"id":"glyrics-menu",
+		"contexts":["all"],
+		"title":"Gaana Lyrics",
+		"documentUrlPatterns":urlPatterns, 
+	});
+});
+chrome.contextMenus.onClicked.addListener(contextMenuOnClicked);
 
-/* Listen for any changes to the URL of any tab. */
-chrome.tabs.onUpdated.addListener(checkForValidUrl);
+
 
 /* Listen for messages from content scripts */
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
@@ -99,149 +99,135 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 	}
 	/* save and forward track information to app event page */
 	else if (request.msgType === "trackInfo") {
-		trackInfoMessage = request;
+		//trackInfoMessage = request;
+		chrome.storage.local.set({'trackInfo': request});
 		chrome.runtime.sendMessage(glyrics_appid, request);
 	}
 });
 
 
 /* Listen for messages from outside like, glyrics app */
-chrome.runtime.onMessageExternal
-		.addListener(function(request, sender, sendResponse) {
-			if (request) {
-				if (request.msgType) {
-					/*
-					 * this message is sent by the glyrics app to check if the
-					 * ext is installed
-					 */
-					if (request.msgType === "version") {
-						console
-								.log("Received message from App: version; sending response");
-						sendResponse({
-							version : 1.0
-						});
-						if (trackInfoMessage) {
-							console
-									.log("Song already playing. Sending trackinfo to App.");
-							chrome.runtime.sendMessage(glyrics_appid,
-									trackInfoMessage);
-						}
+chrome.runtime.onMessageExternal.addListener(
+	function(request, sender, sendResponse) {
+		if (request) {
+		if (request.msgType) {
+			/*
+			* this message is sent by the glyrics app to check if the
+	 		* ext is installed
+	 		*/
+	 		if (request.msgType === "version") {
+				console.log("Received msg from App: version; sending response");
+				sendResponse({ version : 1.0 });
+				chrome.storage.local.get('trackInfo', function(obj){
+		  			var trackInfoMessage = obj.trackInfo;
+		  			if (trackInfoMessage) {
+		    			console.log("Already playing. Sending trackinfo to App.");
+	            		chrome.runtime.sendMessage(glyrics_appid, trackInfoMessage);
 					}
-				}
+				});
 			}
-		});
+	    }
+		}
+	});
 
 function getLyricURL(artist, title) {
-	$
-			.ajax({
-				url : 'http://lyrics.wikia.com/api.php',
-				data : {
-                    action : 'lyrics',
-					artist : artist,
-					song : title,
-					fmt : 'xml'
-				},
-				headers : {
-					"X-Wikia-API-Key" : "90d9b7f2f7e0f57b66f13e5c99b287cfa189bb88"
-				},
-				dataType : 'xml',
-				type : 'GET',
-				cache : false,
-				complete : function(jqXHR, status) {
-					// console.log('Status:'+status);
-				},
-				error : function(jqXHR, textStatus, errorThrown) {
-					// send error message to content script
-					var pass_data = {
-						'msgType' : 'displayError',
-						'message' : 'An error occurred while searching lyrics for "'
-								+ title
-								+ '" by "'
-								+ artist
-								+ '". Please retry.'
+	$.ajax({
+		url : 'http://lyrics.wikia.com/api.php',
+		data : {
+			action : 'lyrics',
+			artist : artist,
+			song : title,
+			fmt : 'xml'
+	  	},
+	headers : {
+		"X-Wikia-API-Key" : "90d9b7f2f7e0f57b66f13e5c99b287cfa189bb88"
+	},
+	dataType : 'xml',
+	type : 'GET',
+	cache : false,
+	complete : function(jqXHR, status) {
+		// console.log('Status:'+status);
+	},
+	error : function(jqXHR, textStatus, errorThrown) {
+		// send error message to content script
+	  	var pass_data = {
+		  'msgType' : 'displayError',
+		  'message' : 'An error occurred while searching lyrics for "'
+				+ title + '" by "' + artist + '". Please retry.'
+		};
+		chrome.tabs.sendMessage(msgFromTabId, pass_data);
+	},
+	success : function(lyricsData, status) {
+		try {
+			// Grab lyrics wikia song url
+			var songURL = $(lyricsData).find("url").text();
+
+			if (!songURL) {
+				throw ('Could not find a song URL');
+			}
+
+			var lyrics = $(lyricsData).find("lyrics").text();
+			if (lyrics === 'Not found') {
+				// send error message to content script
+				var pass_data = {
+					'msgType' : 'displayError',
+					'msgAction' : 'searchOnLyricWiki',
+					'message' : 'Lyrics not found for "'
+					+ title + '" by ' + artist
+					+ ' (<a target="_blank" href="https://www.google.com/search?q='
+					+ title + ' ' + artist + ' lyrics">Search Google</a>).<br>'
+					+ 'Please add lyrics at ' + '<a href="' + songURL.replace(/<[^>]*>?/g, '')
+					+ '" target="_blank">LyricWiki</a>.'
+				};
+				chrome.tabs.sendMessage(msgFromTabId, pass_data);
+				throw new Error('LYRICS NOT FOUND');
+			}
+
+			getLyricsFromLyricWikiURL(songURL);
+
+		} catch (err) {
+			console.log(err.message);
+			if (err.message !== 'LYRICS NOT FOUND') {
+				// send error message to content script
+				var pass_data = {
+					'msgType' : 'displayError',
+					'message' : 'An error occurred while retrieving lyrics for "'
+							+ title
+							+ '" by "'
+							+ artist
+							+ '". Please retry.'
 					};
-					chrome.tabs.sendMessage(msgFromTabId, pass_data);
-				},
-				success : function(lyricsData, status) {
-					try {
-						// Grab lyrics wikia song url
-						var songURL = $(lyricsData).find("url").text();
-
-						if (!songURL) {
-							throw ('Could not find a song URL');
-						}
-
-						var lyrics = $(lyricsData).find("lyrics").text();
-						if (lyrics === 'Not found') {
-							// send error message to content script
-							var pass_data = {
-								'msgType' : 'displayError',
-								'msgAction' : 'searchOnLyricWiki',
-								'message' : 'Lyrics not found for "'
-										+ title
-										+ '" by '
-										+ artist
-										+ ' (<a target="_blank" href="https://www.google.com/search?q='
-										+ title
-										+ ' '
-										+ artist
-										+ ' lyrics">Search Google</a>).<br>'
-										+ 'Please add lyrics at ' + '<a href="'
-										+ songURL.replace(/<[^>]*>?/g, '')
-										+ '" target="_blank">LyricWiki</a>.'
-							};
-							chrome.tabs.sendMessage(msgFromTabId, pass_data);
-							throw new Error('LYRICS NOT FOUND');
-						}
-
-						getLyricsFromLyricWikiURL(songURL);
-
-					} catch (err) {
-						console.log(err.message);
-						if (err.message !== 'LYRICS NOT FOUND') {
-							// send error message to content script
-							var pass_data = {
-								'msgType' : 'displayError',
-								'message' : 'An error occurred while retrieving lyrics for "'
-										+ title
-										+ '" by "'
-										+ artist
-										+ '". Please retry.'
-							};
-							chrome.tabs.sendMessage(msgFromTabId, pass_data);
-						}
-					}
-
-				}
-
-			});
+				chrome.tabs.sendMessage(msgFromTabId, pass_data);
+			}
+		}
+	  }
+	});
 }
 
 function getLyricsFromLyricWikiURL(songURL) {
-	$
-			.ajax({
-				url : songURL,
-				type : 'GET',
-				complete : function(jqXHR, status) {
-					// console.log('Status:'+status);
-				},
-				success : function(songData, songStatus) {
-					var lyrics = getLyricsFromRawHtml(songData);
-					if (lyrics.length === 0) {
-						throw ('No lyrics found');
-					} else {
-						// send lyrics to content script
-						var pass_data = {
-							'msgType' : 'lyrics',
-							'lyrics' : lyrics
-									+ '<br class="glyrics"><br class="glyrics"><hr class="glyrics"><span class="courtesy">Lyrics provided by <a href="'
-									+ songURL
-									+ '" target="_blank">LyricWiki</a>.</span>'
-						};
-						chrome.tabs.sendMessage(msgFromTabId, pass_data);
-					}
-				}
-			});
+	$.ajax({
+		url : songURL,
+		type : 'GET',
+		complete : function(jqXHR, status) {
+			// console.log('Status:'+status);
+		},
+		success : function(songData, songStatus) {
+			var lyrics = getLyricsFromRawHtml(songData);
+			if (lyrics.length === 0) {
+				throw ('No lyrics found');
+			} else {
+				// send lyrics to content script
+				var pass_data = {
+					'msgType' : 'lyrics',
+					'lyrics' : lyrics
+					+ '<br class="glyrics"><br class="glyrics"><hr class="glyrics"><span class="courtesy">Lyrics provided by <a href="'
+					+ songURL
+					+ '" target="_blank">LyricWiki</a>.</span>'
+				};
+				chrome.tabs.sendMessage(msgFromTabId, pass_data);
+			}
+		}
+	});
 }
 
 function getLyricsFromRawHtml(data) {
@@ -256,8 +242,7 @@ function getLyricsFromRawHtml(data) {
 	// and filter all unnecessary elements out
 	// get the html and remove the div.
 	return $('<div>').append(
-			$(data).find('.lyricbox').contents().filter(filter)).remove()
-			.html();
+			$(data).find('.lyricbox').contents().filter(filter)).remove().html();
 }
 
 function getSongInfoFromRawHtml(data) {
@@ -304,14 +289,10 @@ function sendSearchRequest(title) {
 								result.title = articleTitle;
 								lwSearchResults[i] = result;
 								i++;
-
 							}
 						}
-
 					});
-
 			callContentScript(msgFromTabId, "displaySearchResults",[lwSearchResults]);
-
 		}
 	});
 }
@@ -321,38 +302,34 @@ function getArtistFromMusicBrainz(title, album) {
 	var query = (!album) ? 'recording:"' + title + '"' : 'recording:"' + title
 			+ '" AND release:"' + album + '"';
 
-	$
-			.ajax({
-				url : "http://musicbrainz.org/ws/2/recording",
-				data : {
-					query : query
-				},
-				type : "GET",
-				error : function(jqXHR, textStatus, errorThrown) {
-                    // send error message to content script
-                    var pass_data = {
-                        'msgType' : 'displayError',
-                        'message' : 'An error occurred while searching artist on MusicBrainz for "'
-                        + title + '". Please retry.'
-                    };
-                    chrome.tabs.sendMessage(msgFromTabId, pass_data);
-					console.log("Error calling MusicBrainz api!");
-				},
-				success : function(data, status) {
-					var artistCredit = $(data).find("artist-credit");
-					if (artistCredit.length > 0) {
-						artist = artistCredit[0].getElementsByTagName("artist")[0]
-								.getElementsByTagName("name")[0].textContent;
-						console.log("Artist name retrieved from MusicBrainz: "
-								+ artist);
-						callContentScript(msgFromTabId, "getLyrics",[artist, title, album]);
-					} else {
-						console.log("MusicBrainz returned 0 results");
-						callContentScript(msgFromTabId, "getLyrics",['Not Found', title, album]);
-					}
-				}
-
-			});
+	$.ajax({
+		url : "http://musicbrainz.org/ws/2/recording",
+		data : {
+			query : query
+		},
+		type : "GET",
+		error : function(jqXHR, textStatus, errorThrown) {
+		// send error message to content script
+			var pass_data = {
+				'msgType' : 'displayError',
+				'message' : 'An error occurred while searching artist on MusicBrainz for "'
+				 + title + '". Please retry.'
+			};
+			chrome.tabs.sendMessage(msgFromTabId, pass_data);
+			console.log("Error calling MusicBrainz api!");
+		},
+		success : function(data, status) {
+			var artistCredit = $(data).find("artist-credit");
+			if (artistCredit.length > 0) {
+				artist = artistCredit[0].getElementsByTagName("artist")[0].getElementsByTagName("name")[0].textContent;
+				console.log("Artist name retrieved from MusicBrainz: " + artist);
+				callContentScript(msgFromTabId, "getLyrics",[artist, title, album]);
+			} else {
+				console.log("MusicBrainz returned 0 results");
+				callContentScript(msgFromTabId, "getLyrics",['Not Found', title, album]);
+			}
+		}
+	});
 }
 
 function callContentScript(tabid, targetFunction, args){

@@ -2,6 +2,7 @@ var glyrics_appid = "paiehomgejkdifojcddmbinmophkibac";
 var msgFromTabId;
 var trackInfoMessage;
 var title;
+
 var hostNames = [
 	"gaana.com",
 	"www.saavn.com",

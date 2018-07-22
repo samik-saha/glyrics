@@ -5,7 +5,7 @@ function fetchTrackInfo(){
   firstArtist = '';
   artists = '';
   
-  songName = $("a.playerBarSong").text().trim();
-  firstArtist = $("a.playerBarArtist").text().trim();
+  songName = $(".Tuner__Audio__TrackDetail__title").text().trim();
+  firstArtist = $(".Tuner__Audio__TrackDetail__artist").text().trim();
   
 }

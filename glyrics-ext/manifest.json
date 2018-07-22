@@ -87,7 +87,7 @@
       ]
     },
     {
-      "matches": ["https://player.spotify.com/*", "https://play.spotify.com/*"],
+      "matches": ["https://open.spotify.com/*","https://player.spotify.com/*", "https://play.spotify.com/*"],
       "js": [
         "jquery-2.0.3.min.js",
         "jquery-ui.min.js",

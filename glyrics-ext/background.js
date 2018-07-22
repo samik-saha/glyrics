@@ -6,8 +6,7 @@ var title;
 var hostNames = [
 	"gaana.com",
 	"www.saavn.com",
-	"play.spotify.com",
-	"player.spotify.com",
+	"open.spotify.com",
 	"play.raaga.com",
 	"soundcloud.com",
 	"music.amazon.com",

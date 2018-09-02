@@ -12,6 +12,7 @@ var hostNames = [
 	"music.amazon.com",
 	"play.google.com",
 	"www.earbits.com",
+	"earbits.com",
 	"www.pandora.com",
 	"plex.tv",
 	"127.0.0.1",

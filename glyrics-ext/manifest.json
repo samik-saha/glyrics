@@ -4,7 +4,7 @@
   "name": "Gaana Lyrics Extension",
   "short_name": "GLyrics Extension",
   "description": "Displays lyrics on Gaana.com, Google Music, Spotify, Pandora, Saavn, SoundCloud, Plex and other streaming music services",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "author": "Samik",
   "icons": {
     "16": "images/icon16.png",
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "matches": ["*://www.earbits.com/*"],
+      "matches": ["*://www.earbits.com/*", "*://earbits.com/*"],
       "js": [
         "jquery-2.0.3.min.js",
         "jquery-ui.min.js",

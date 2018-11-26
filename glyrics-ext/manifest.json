@@ -4,7 +4,7 @@
   "name": "Gaana Lyrics Extension",
   "short_name": "GLyrics Extension",
   "description": "Displays lyrics on Gaana.com, Google Music, Spotify, Pandora, Saavn, SoundCloud, Plex and other streaming music services",
-  "version": "4.0.2",
+  "version": "4.0.4",
   "author": "Samik",
   "icons": {
     "16": "images/icon16.png",
@@ -14,7 +14,7 @@
   "options_page": "options/options.html",
   "background": {
     "scripts": [
-      "jquery-2.0.3.min.js",
+      "jquery-3.3.1.min.js",
       "background.js"
     ],
     "persistent": false
@@ -51,7 +51,7 @@
         "css/jquery-ui.min.css"
       ],
       "js": [
-        "jquery-2.0.3.min.js",
+        "jquery-3.3.1.min.js",
         "jquery-ui.min.js",
         "script.js",
         "gaana/extract_track_info.js"
@@ -61,7 +61,7 @@
     {
       "matches": [ "*://www.accuradio.com/*" ],
       "js": [
-        "jquery-2.0.3.min.js",
+        "jquery-3.3.1.min.js",
         "jquery-ui.min.js",
         "script.js",
         "AccuRadio/extract_track_info.js"
@@ -75,7 +75,7 @@
     {
       "matches": ["*://www.saavn.com/*"],
       "js": [
-        "jquery-2.0.3.min.js",
+        "jquery-3.3.1.min.js",
         "jquery-ui.min.js",
         "script.js",
         "saavn/extract_track_info.js"
@@ -89,7 +89,7 @@
     {
       "matches": ["https://open.spotify.com/*","https://player.spotify.com/*", "https://play.spotify.com/*"],
       "js": [
-        "jquery-2.0.3.min.js",
+        "jquery-3.3.1.min.js",
         "jquery-ui.min.js",
         "script.js",
         "spotify/extract_track_info.js"
@@ -103,7 +103,7 @@
     {
       "matches": ["*://play.raaga.com/*"],
       "js": [
-        "jquery-2.0.3.min.js",
+        "jquery-3.3.1.min.js",
         "jquery-ui.min.js",
         "script.js",
         "raaga/extract_track_info.js"
@@ -117,7 +117,7 @@
     {
       "matches": ["*://soundcloud.com/*"],
       "js": [
-        "jquery-2.0.3.min.js",
+        "jquery-3.3.1.min.js",
         "jquery-ui.min.js",
         "script.js",
         "soundcloud/extract_track_info.js"
@@ -131,7 +131,7 @@
     {
       "matches": ["*://music.amazon.com/*"],
       "js": [
-        "jquery-2.0.3.min.js",
+        "jquery-3.3.1.min.js",
         "jquery-ui.min.js",
         "script.js",
         "amazonmusic/extract_track_info.js"
@@ -145,7 +145,7 @@
     {
       "matches": ["*://play.google.com/music/*"],
       "js": [
-        "jquery-2.0.3.min.js",
+        "jquery-3.3.1.min.js",
         "jquery-ui.min.js",
         "script.js",
         "googlemusic/extract_track_info.js"
@@ -159,7 +159,7 @@
     {
       "matches": ["*://www.earbits.com/*", "*://earbits.com/*"],
       "js": [
-        "jquery-2.0.3.min.js",
+        "jquery-3.3.1.min.js",
         "jquery-ui.min.js",
         "script.js",
         "earbits/extract_track_info.js"
@@ -173,7 +173,7 @@
     {
       "matches": ["*://www.pandora.com/*"],
       "js": [
-        "jquery-2.0.3.min.js",
+        "jquery-3.3.1.min.js",
         "jquery-ui.min.js",
         "script.js",
         "pandora/extract_track_info.js"
@@ -191,7 +191,7 @@
         "http://localhost:32400/*"
       ],
       "js": [
-        "jquery-2.0.3.min.js",
+        "jquery-3.3.1.min.js",
         "jquery-ui.min.js",
         "script.js",
         "plex/extract_track_info.js"
@@ -205,7 +205,7 @@
     {
       "matches": [ "*://www.slacker.com/*" ],
       "js": [
-        "jquery-2.0.3.min.js",
+        "jquery-3.3.1.min.js",
         "jquery-ui.min.js",
         "script.js",
         "slacker/extract_track_info.js"
@@ -219,7 +219,7 @@
     {
       "matches": [ "*://www.jango.com/*" ],
       "js": [
-        "jquery-2.0.3.min.js",
+        "jquery-3.3.1.min.js",
         "jquery-ui.min.js",
         "script.js",
         "jango/extract_track_info.js"
@@ -233,7 +233,7 @@
     {
       "matches": [ "*://www.deezer.com/*" ],
       "js": [
-        "jquery-2.0.3.min.js",
+        "jquery-3.3.1.min.js",
         "jquery-ui.min.js",
         "script.js",
         "deezer/extract_track_info.js"
@@ -247,7 +247,7 @@
     {
       "matches": [ "*://8tracks.com/*" ],
       "js": [
-        "jquery-2.0.3.min.js",
+        "jquery-3.3.1.min.js",
         "jquery-ui.min.js",
         "script.js",
         "8tracks/extract_track_info.js"
@@ -261,7 +261,7 @@
     {
       "matches": [ "*://listen.tidal.com/*" ],
       "js": [
-        "jquery-2.0.3.min.js",
+        "jquery-3.3.1.min.js",
         "jquery-ui.min.js",
         "script.js",
         "tidal/extract_track_info.js"
@@ -275,7 +275,7 @@
     {
       "matches": [ "*://music.wynk.in/*" ],
       "js": [
-        "jquery-2.0.3.min.js",
+        "jquery-3.3.1.min.js",
         "jquery-ui.min.js",
         "script.js",
         "wynk/extract_track_info.js"
@@ -289,7 +289,7 @@
     {
       "matches": [ "*://music.microsoft.com/*" ],
       "js": [
-        "jquery-2.0.3.min.js",
+        "jquery-3.3.1.min.js",
         "jquery-ui.min.js",
         "script.js",
         "groove/extract_track_info.js"
@@ -302,7 +302,6 @@
     }
   ],
   "web_accessible_resources": [
-    "jquery-2.0.3.min.map",
     "images/*.png",
     "css/*.css",
     "fonts/*",

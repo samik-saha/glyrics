@@ -16,8 +16,8 @@ function fetchTrackInfo() {
         trackArtist = $('#main').contents().find('#view-now-playing .artist span:first').text().trim();
     }
     else {
-        trackName = $(".track-info .track-info__name").text().trim();
-        trackArtist = $(".track-info .track-info__artists").text().trim();
+        trackName = $(".track-info .track-info__name:first").text().trim();
+        trackArtist = $(".track-info .track-info__artists:first").text().trim();
     }
 
     window.songName = trackName;

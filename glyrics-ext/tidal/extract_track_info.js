@@ -6,8 +6,8 @@ function fetchTrackInfo() {
     window.artists = '';
 
     var trackName, trackArtist;
-    trackName = $(".player__text a")[0].text.trim();
-    trackArtist = $(".player__text a")[1].text.trim();
+    trackName = $('[class^=mediaInformation]:first').children().first().text().trim()
+    trackArtist = $('[class^=mediaInformation]:first').children().last().text().trim();;
 
     window.songName = trackName;
     window.firstArtist = trackArtist;

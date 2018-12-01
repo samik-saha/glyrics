@@ -19,7 +19,7 @@
 	top: 200px;
 	left: 500px;
 	padding: 0;
-	border: solid 1px #42A695;
+	border: solid 1px #F44336;
 	opacity: 0.9;
 	z-index: 2147483647;
 	max-height: 100%;
@@ -30,7 +30,7 @@
 	font-weight: normal;
 	box-shadow: rgba(0, 0, 0, 0.3) 5px 5px 5px -3px;
 	color: black;
-	background-color: #CCFFF6;
+	background-color:white;
     text-align:left;
 }
 
@@ -42,7 +42,7 @@
 	vertical-align: middle;
 	margin: 0;
 	color: white;
-	background-color: #42A695;
+	background-color: #F44336;
 	font-size:13px;
 }
 
@@ -110,11 +110,11 @@
 }
 
 #glyrics-content a:LINK {
-	color: #005D5D;
+	color: #cc6d1d;
 }
 
 #glyrics-content a:VISITED {
-	color: #005D5D;
+	color: #cc6d1d;
 }
 
 #glyrics-content a:HOVER {
@@ -126,17 +126,17 @@
 }
 
 #glyrics-content::-webkit-scrollbar-thumb {
-	border: 1px solid #A3BFBA;
+	border: 1px solid #CFCFCF;
 	border-radius: 10px;
-	background-color: #A3BFBA;
+	background-color: #CFCFCF;
 }
 
 #glyrics-content::-webkit-scrollbar-track {
-	background-color: #CCFFF6;
+	background-color: #EEEEEE;
 }
 
 #glyrics-content::-webkit-scrollbar-corner {
-	background-color: #CCFFF6;
+	background-color: #EEEEEE;
 }
 
 #glyrics-text{

@@ -4,7 +4,7 @@
   "name": "Gaana Lyrics Extension",
   "short_name": "GLyrics Extension",
   "description": "Displays lyrics on Gaana.com, Google Music, Spotify, Pandora, Saavn, SoundCloud, Plex and other streaming music services",
-  "version": "4.0.5",
+  "version": "4.1.0",
   "author": "Samik",
   "icons": {
     "16": "images/icon16.png",
@@ -299,7 +299,22 @@
         "css/lyrics.css",
         "css/jquery-ui.min.css"
       ]
+    },
+    {
+      "matches": [ "*://music.youtube.com/*" ],
+      "js": [
+        "jquery-3.3.1.min.js",
+        "jquery-ui.min.js",
+        "script.js",
+        "ytmusic/extract_track_info.js"
+      ],
+      "run_at": "document_end",
+      "css": [
+        "css/lyrics.css",
+        "css/jquery-ui.min.css"
+      ]
     }
+
   ],
   "web_accessible_resources": [
     "images/*.png",
@@ -326,6 +341,7 @@
     "8tracks/8tracks.css",
     "tidal/tidal.css",
     "wynk/wynk.css",
-    "groove/groove.css"
+    "groove/groove.css",
+    "ytmusic/ytmusic.css"
   ]
 }

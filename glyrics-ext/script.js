@@ -299,6 +299,9 @@ function addAutoStyleCSSLink() {
         case "music.microsoft.com":
             autoStyleURL = chrome.extension.getURL("groove/groove.css");
             break;
+        case "music.youtube.com":
+            autoStyleURL = chrome.extension.getURL("ytmusic/ytmusic.css");
+            break;
     }
     autoStyle.setAttribute("href", autoStyleURL);
     document.body.appendChild(autoStyle);

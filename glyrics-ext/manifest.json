@@ -3,8 +3,8 @@
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjncGVrX6BqXMlSfwMVrWP5qDTpD6dbuLJUGW1uBIm4Stjmawgy9lecB4nScuX6hORpj2kAYMNhvv4vrVc2T57RTcHeJVg04iEtfB4cTganIiOFykAlkZaSFJAtiP6kv2eqLSJDDuqEh/PHS7EqKpvJagDa/YodgRsVUdqwraT4O7QGCImJopD1ocNGALY11eLPcTkujYoMJyke/N12S0/hAryNPv6Zvnuerajqz+mjnAu2f1n5yQuRrirgO5GxHhcrdjFnMayTTybikRixD+xO07zVsl/+6FN2pfmc45QEf14IBPS+2r/wTvH6khiPGz2mofp7FEl/DXBfLjP8k5qwIDAQAB",
   "name": "Gaana Lyrics Extension",
   "short_name": "GLyrics Extension",
-  "description": "Displays lyrics on Gaana.com, Google Music, Spotify, Pandora, Saavn, SoundCloud, Plex and other streaming music services",
-  "version": "4.1.0",
+  "description": "Displays lyrics on Gaana.com, Google Music, YouTube Music, Spotify, Pandora, Saavn, SoundCloud and other streaming music services",
+  "version": "4.1.1",
   "author": "Samik",
   "icons": {
     "16": "images/icon16.png",

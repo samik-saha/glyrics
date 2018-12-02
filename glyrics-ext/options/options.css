@@ -35,8 +35,10 @@
 }
 
 body {
-	font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+	font-family: Roboto, 'Segoe UI', Tahoma, sans-serif;
 	color: rgb(48, 57, 66);
+	margin: 0px;
+	background-color: #f8f9fa;
 }
 
 hr {
@@ -46,17 +48,16 @@ hr {
 }
 
 h1 {
-	font-family: sans-serif;
-	font-size: 18px;
-	display: block;
 	position: fixed;
-	text-align: left;
-	top: 60px;
-	left: -116px;
-	padding-left: 20px;
-	padding-bottom: 5px;
-	width: 240px;
-	background-color: orange;
+	width: 100%;
+	background-color: #3367d6;
+	color: white;
+	margin: 0px;
+	padding: 19px;
+	font-size: 137%;
+    font-weight: 400;
+    letter-spacing: .25px;
+    line-height: normal;
 }
 
 h3 {
@@ -70,20 +71,6 @@ input[type="radio"]{
     vertical-align: middle;
 }
 
-.rotate {
-	/* Safari */
-	-webkit-transform: rotate(-90deg);
-	/* Firefox */
-	-moz-transform: rotate(-90deg);
-	/* IE */
-	-ms-transform: rotate(-90deg);
-	/* Opera */
-	-o-transform: rotate(-90deg);
-	transform: rotate(-90deg);
-	/* Internet Explorer */
-	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
-}
-
 .warning {
 	color: orangered;
 }
@@ -95,10 +82,16 @@ input[type="radio"]{
 
 #color-slider.ui-slider{
 	height: 20px;
-	background: linear-gradient(to right,#ff0000,#ff0080,#ff00ff,#8000ff,#0000ff,#0080ff,#00ffff,#00ff80,#00ff00,#80ff00,#ffff00,#ff8000,#ff0000);
+	background: -webkit-linear-gradient(left, #ff0000 0%,#ffff00 16.66666666666667%,#00ff00 33.33%,#00fffe 50%,#0000ff 66.66666666666667%,#fe00ff 83.33333333333333%,#ff0000 100%);
+	/*background: linear-gradient(to right,#ff0000,#ff0080,#ff00ff,#8000ff,#0000ff,#0080ff,#00ffff,#00ff80,#00ff00,#80ff00,#ffff00,#ff8000,#ff0000);
+*/
 }
 #color-slider .ui-slider-handle{
-	height: 24px;
+	height: 20px;
+	display:block;
+	position: relative;
+	width:5px;
+	box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 2px 1px;
 }
 
 label {
@@ -121,9 +114,13 @@ span.caption {
 }
 
 #content {
+	display:block;
+	align-content: center;
+	margin: 0 auto;
 	width: 600px;
-	margin-left: 60px;
-	vertical-align: top;
+	padding-right: 50px;
+	padding-left: 50px;
+	padding-top: 60px;
 }
 
 #optionsContainer {
@@ -132,14 +129,25 @@ span.caption {
 
 .option-label {
 	font-weight: normal;
-	margin-left:-18px;
 }
 
 section {
 	margin-top: 10px;
-	margin-left: 18px;
+	margin-left: 0px;
 	padding-bottom: 10px;
 	display: inline-block;
+}
+
+.settings-box {
+	background-color: white;
+	width: 385px;
+	padding: 10px;
+	box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.2), 1px 0px 7px 0px rgba(0, 0, 0, 0.19);
+}
+
+#buttons{
+	padding-bottom: 20px;
+	padding-right: 50px;
 }
 
 #save, #close {
@@ -232,8 +240,8 @@ section {
 
 #lyrics-container {
 	border: solid 2px;
-	background-color: #b3ffee;
-	border-color: #42A695;
+	background-color: white;
+	border-color: #F44336;
 	opacity:0.9;
 	height: 300px;
 	position:relative;
@@ -242,7 +250,7 @@ section {
 
 #lyrics-topbar {
 	padding: 6px 5px 4px 5px;
-	background-color: #42A695;
+	background-color: #F44336;
 	color: white;
 	height: 20px;
 	font-weight:bold;
@@ -267,11 +275,11 @@ section {
 }
 
 #glyrics-content a:LINK {
-	color: #005D5D;
+	color: #cc6d1d;
 }
 
 #glyrics-content a:VISITED {
-	color: #005D5D;
+	color: #cc6d1d;
 }
 
 #glyrics-content a:HOVER {
@@ -283,25 +291,26 @@ section {
 }
 
 #glyrics-content::-webkit-scrollbar-thumb {
-	border: 1px solid #A3BFBA;
+	border: 1px solid #CFCFCF;
 	border-radius: 10px;
-	background-color: #A3BFBA;
+	background-color: #CFCFCF;
 }
 
 #glyrics-content::-webkit-scrollbar-track {
-	background-color: #CCFFF6;
+	background-color: #EEEEEE;
 }
 
 #glyrics-content::-webkit-scrollbar-corner {
-	background-color: #CCFFF6;
+	background-color: #EEEEEE;
 }
 #glyrics-content .courtesy{
 	font-size: 10px;
 }
 #status {
-	position: absolute;
-	top:50px;
-	left: 350px;
+	position: fixed;
+	top:0px;
+	left: 50%;
+	margin-left: -90px;
 	background-color:#FFCC66;
 	color:black;
 	border: solid 1px #FFCC33;

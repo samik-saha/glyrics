@@ -48,6 +48,7 @@ hr {
 }
 
 h1 {
+	z-index: 1;
 	position: fixed;
 	width: 100%;
 	background-color: #3367d6;

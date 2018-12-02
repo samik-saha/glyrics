@@ -186,7 +186,7 @@
     },
     {
       "matches": [
-        "https://app.plex.tv/web/*",
+        "https://app.plex.tv/*",
         "http://127.0.0.1:32400/*",
         "http://localhost:32400/*"
       ],

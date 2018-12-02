@@ -14,7 +14,7 @@ var hostNames = [
 	"www.earbits.com",
 	"earbits.com",
 	"www.pandora.com",
-	"plex.tv",
+	"app.plex.tv",
 	"127.0.0.1",
 	"localhost",
 	"www.accuradio.com",

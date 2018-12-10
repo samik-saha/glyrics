@@ -1,67 +1,76 @@
 <html>
-<head>
-<title>Gaana Lyrics Options</title>
-<link href="../css/jquery-ui.min.css" rel="stylesheet" type="text/css">
-<link href="options.css" rel="stylesheet" type="text/css" title="option">
-<script src="../jquery-2.0.3.min.js"></script>
-<script src="../jquery-ui.min.js"></script>
 
+<head>
+	<title>Gaana Lyrics Options</title>
+	<link href="../css/jquery-ui.min.css" rel="stylesheet" type="text/css">
+	<link href="options.css" rel="stylesheet" type="text/css" title="option">
+	<script src="../jquery-3.3.1.min.js"></script>
+	<script src="../jquery-ui.min.js"></script>
 </head>
+
 <body>
-	<h1 class="rotate">Gaana Lyrics</h1>
+	<h1>Gaana Lyrics Settings</h1>
 	<div id="content" style="width: 750px;">
-		<h2>Settings</h2>
-		<hr />
 		<div id="optionsContainer" style="height: 219px; width: 381px;">
 			<section>
 				<h3 class='option-label'>Appearance</h3>
-				<label class="option"><input name="theme" type="radio" value="user">Use global color scheme</label>
-				<div class="option2"><span class="caption">Hue: </span><div id="color-slider"></div></div>
-				<div class="option2"><span class="caption">Background: </span>
-					<label><input name="background" type="radio" value="tinted">Tinted</label>
-					<label><input name="background" type="radio" value="white">White</label>
-					<label><input name="background" type="radio" value="black">Black</label>
+				<div class='settings-box'>
+					<label class="option"><input name="theme" type="radio" value="user">Use global color scheme</label>
+					<div class="option2"><span class="caption">Hue: </span>
+						<div id="color-slider"></div>
+					</div>
+					<div class="option2"><span class="caption">Background: </span>
+						<label><input name="background" type="radio" value="tinted">Tinted</label>
+						<label><input name="background" type="radio" value="white">White</label>
+						<label><input name="background" type="radio" value="black">Black</label>
+					</div>
+					<br />
+					<label class="option"><input name="theme" type="radio" value="auto"> <span>Use music service page's color scheme</span></label>
 				</div>
-				<br/>
-				<label class="option"><input name="theme" type="radio" value="auto"> <span>Use music service page's color scheme</span></label>
 			</section>
 			<section>
 				<h3 class='option-label'>Content</h3>
-				<label class="option"><span i18n-content="defaultFontSizeLabel">Font:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				<div id="fontList">
-					<div class="font-item DefaultFont selected" fontClass="DefaultFont">Default</div>
-					<div class="font-item CraftyGirls" fontClass="CraftyGirls">Crafty Girls</div>
-					<div class="font-item Calligraffitti" fontClass="Calligraffitti">Calligraffitti</div>
-					<div class="font-item WalterTurncoat" fontClass="WalterTurncoat">Walter Turncoat</div>
-					<div class="font-item GloriaHallelujah" fontClass="GloriaHallelujah">Gloria Hallelujah</div>
-					<div class="font-item Inconsolata" fontClass="Inconsolata">Inconsolata</div>
-					<div class="font-item Courgette" fontClass="Courgette">Courgette</div>
-					<div class="font-item Slabo27px" fontClass="Slabo27px">Slabo 27px</div>
-				</div></label>
-			<br/>
-			<label class="option">
-			<span i18n-content="defaultFontSizeLabel">Font size:&nbsp;</span>
-			<select id="fontSize">
-				<option value="10px">Very Small</option>
-				<option value="12px">Small</option>
-				<option value="14px">Medium</option>
-				<option value="16px">Large</option>
-				<option value="18px">Very Large</option>
-			</select>
-			</label>
+				<div class="settings-box">
+					<label class="option"><span i18n-content="defaultFontSizeLabel">Font:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						<div id="fontList">
+							<div class="font-item DefaultFont selected" fontClass="DefaultFont">Default</div>
+							<div class="font-item CraftyGirls" fontClass="CraftyGirls">Crafty Girls</div>
+							<div class="font-item Calligraffitti" fontClass="Calligraffitti">Calligraffitti</div>
+							<div class="font-item WalterTurncoat" fontClass="WalterTurncoat">Walter Turncoat</div>
+							<div class="font-item GloriaHallelujah" fontClass="GloriaHallelujah">Gloria Hallelujah</div>
+							<div class="font-item Inconsolata" fontClass="Inconsolata">Inconsolata</div>
+							<div class="font-item Courgette" fontClass="Courgette">Courgette</div>
+							<div class="font-item Slabo27px" fontClass="Slabo27px">Slabo 27px</div>
+						</div>
+					</label>
+					<br />
+					<label class="option">
+						<span i18n-content="defaultFontSizeLabel">Font size:&nbsp;</span>
+						<select id="fontSize">
+							<option value="10px">Very Small</option>
+							<option value="12px">Small</option>
+							<option value="14px">Medium</option>
+							<option value="16px">Large</option>
+							<option value="18px">Very Large</option>
+						</select>
+					</label>
+				</div>
 			</section>
 			<section>
 				<h3 class='option-label'>Gaana Lyrics App</h3>
-				<span style=""><input id="appCheckBox" type="checkbox" name="appWindow" >
-					Open lyrics in App Window <br>
-                    <span id="appNotInstalledWarning" class="warning">(For this option to work, you need the Gaana Lyrics <em>App</em>. Please install it from <a href="https://chrome.google.com/webstore/detail/gaana-lyrics/paiehomgejkdifojcddmbinmophkibac">Chrome Web Store</a>. DO NOT select this, if you do not have the App.)</span></span>
+				<div class="settings-box">
+					<span style=""><input id="appCheckBox" type="checkbox" name="appWindow">
+						Open lyrics in App Window <br>
+						<span id="appNotInstalledWarning" class="warning">(For this option to work, you need the Gaana Lyrics <em>App</em>.
+							Please install it from <a href="https://chrome.google.com/webstore/detail/gaana-lyrics/paiehomgejkdifojcddmbinmophkibac">Chrome
+								Web Store</a>. DO NOT select this, if you do not have the App.)</span></span>
+				</div>
 			</section>
 
 			<br> <br> <br>
 		</div>
 
-		<section id="previewPane"
-			style="height: 190px; width: 271px;">
+		<section id="previewPane" style="width: 271px;">
 			<h3 class='option-label'>Preview</h3>
 			<div id="lyrics-container">
 				<div id="lyrics-topbar">Lyrics</div>
@@ -69,13 +78,13 @@
 					Lorem ipsum dolor sit amet<br> consectetur adipisicing elit<br>
 					sed do eiusmod tempor incididunt ut<br> labore et dolore magna
 					aliqua
-					<br/>
-					<br/>
+					<br />
+					<br />
 					Lorem ipsum dolor sit amet<br> consectetur adipisicing elit<br>
 					sed do eiusmod tempor incididunt ut<br> labore et dolore magna
 					aliqua
-					<br/>
-					<br/>
+					<br />
+					<br />
 					Lorem ipsum dolor sit amet<br> consectetur adipisicing elit<br>
 					sed do eiusmod tempor incididunt ut<br> labore et dolore magna
 					aliqua
@@ -88,20 +97,20 @@
 					<br>
 					<hr class="glyrics">
 					<span class="courtesy">Lyrics provided by <a href="#">LyricWiki</a>.</span>
-				
+
 				</div>
 			</div>
 		</section>
 
-		<div id="buttons">
-		<div id="status"></div>
-		<button id="save">Save</button>
-		<button id="close">Close</button>
-		<button id="reset">Reset to Default</button>
-		</div>
-		
-	</div>
+		<div id="buttons">	
+			<button id="save">Save</button>
+			<button id="close">Close</button>
 
+			<button id="reset">Reset to Default</button>
+		</div>
+
+	</div>
+	<div id="status"></div>
 </body>
 <script src="../color-scheme.js"></script>
 <script src="options.js"></script>

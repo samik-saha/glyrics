@@ -6,8 +6,10 @@
     var colorSlider = $("#color-slider").slider({
         min: 0,
         max: 360,
+        step: 1,
+        animate:true,
         slide: function (ev, ui) {
-            setColorSettings(360 - ui.value);
+            setColorSettings(ui.value);
             previewAppearance();
         }
     });
@@ -31,10 +33,10 @@
 
     var setDefaultSettings = function(){
         /* Setup Default Settings */
-        settings.hue = 167;
+        settings.hue = 50;
         settings.autoColorScheme = true;
-        settings.background = "tinted";
-        settings.color = getSchemeColors(167, "tinted");
+        settings.background = "white";
+        settings.color = getSchemeColors(50, "white");
         settings.defaultFontSize = '14px';
         settings.fontClass = "DefaultFont";
         settings.fontFamily = "'Trebuchet MS', Arial, Helvetica, sans-serif";

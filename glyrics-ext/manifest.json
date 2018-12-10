@@ -3,8 +3,8 @@
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjncGVrX6BqXMlSfwMVrWP5qDTpD6dbuLJUGW1uBIm4Stjmawgy9lecB4nScuX6hORpj2kAYMNhvv4vrVc2T57RTcHeJVg04iEtfB4cTganIiOFykAlkZaSFJAtiP6kv2eqLSJDDuqEh/PHS7EqKpvJagDa/YodgRsVUdqwraT4O7QGCImJopD1ocNGALY11eLPcTkujYoMJyke/N12S0/hAryNPv6Zvnuerajqz+mjnAu2f1n5yQuRrirgO5GxHhcrdjFnMayTTybikRixD+xO07zVsl/+6FN2pfmc45QEf14IBPS+2r/wTvH6khiPGz2mofp7FEl/DXBfLjP8k5qwIDAQAB",
   "name": "Gaana Lyrics Extension",
   "short_name": "GLyrics Extension",
-  "description": "Displays lyrics on Gaana.com, Google Music, Spotify, Pandora, Saavn, SoundCloud, Plex and other streaming music services",
-  "version": "4.0.5",
+  "description": "Displays lyrics on Gaana.com, Google Music, YouTube Music, Spotify, Pandora, Saavn, SoundCloud and other streaming music services",
+  "version": "4.1.1",
   "author": "Samik",
   "icons": {
     "16": "images/icon16.png",
@@ -186,7 +186,7 @@
     },
     {
       "matches": [
-        "https://app.plex.tv/web/*",
+        "https://app.plex.tv/*",
         "http://127.0.0.1:32400/*",
         "http://localhost:32400/*"
       ],
@@ -299,7 +299,22 @@
         "css/lyrics.css",
         "css/jquery-ui.min.css"
       ]
+    },
+    {
+      "matches": [ "*://music.youtube.com/*" ],
+      "js": [
+        "jquery-3.3.1.min.js",
+        "jquery-ui.min.js",
+        "script.js",
+        "ytmusic/extract_track_info.js"
+      ],
+      "run_at": "document_end",
+      "css": [
+        "css/lyrics.css",
+        "css/jquery-ui.min.css"
+      ]
     }
+
   ],
   "web_accessible_resources": [
     "images/*.png",
@@ -326,6 +341,7 @@
     "8tracks/8tracks.css",
     "tidal/tidal.css",
     "wynk/wynk.css",
-    "groove/groove.css"
+    "groove/groove.css",
+    "ytmusic/ytmusic.css"
   ]
 }

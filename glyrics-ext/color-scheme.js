@@ -1,8 +1,8 @@
 (function(){
 	window.getSchemeColors = function(hue, bg){
 		var color={};
-		color.headerBackground='#'+hsbToHex({'h':hue, 's':100, 'x':40});
-		color.border='#'+hsbToHex({'h':hue, 's':100, 'x':40});
+		color.headerBackground='#'+hsbToHex({'h':hue, 's':100, 'x':80});
+		color.border='#'+hsbToHex({'h':hue, 's':100, 'x':80});
 
 		switch (bg){
 			case "white":

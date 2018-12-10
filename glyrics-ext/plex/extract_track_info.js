@@ -3,8 +3,7 @@ function fetchTrackInfo(){
   songName = '';
   album = '';
   firstArtist = '';
-  artists = '';
-  
-  songName = $('button.item-title').text().trim();
-  firstArtist = $('button.grandparent-title').text().trim();
+  artists = $('[class^=PlayerControlsMetadata-container]:first span a:first').text();
+  songName = $('[class^=PlayerControlsMetadata-container]:first a:first').text().trim();
+  firstArtist = artists.split(",")[0];
 }

@@ -14,7 +14,7 @@ var hostNames = [
 	"www.earbits.com",
 	"earbits.com",
 	"www.pandora.com",
-	"plex.tv",
+	"app.plex.tv",
 	"127.0.0.1",
 	"localhost",
 	"www.accuradio.com",
@@ -23,7 +23,8 @@ var hostNames = [
 	"8tracks.com",
 	"listen.tidal.com",
 	"music.wynk.in",
-	"music.microsoft.com"
+	"music.microsoft.com",
+	"music.youtube.com"
 ];
 
 /* Create url patterns required to create context menu */

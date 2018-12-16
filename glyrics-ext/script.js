@@ -293,7 +293,7 @@ function addAutoStyleCSSLink() {
         case "listen.tidal.com":
             autoStyleURL = chrome.extension.getURL("tidal/tidal.css");
             break;
-        case "music.wynk.in":
+        case "wynk.in":
             autoStyleURL = chrome.extension.getURL("wynk/wynk.css");
             break;
         case "music.microsoft.com":

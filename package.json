@@ -7,8 +7,8 @@
     "doc": "docs"
   },
   "scripts": {
-    "build":  "node ./scripts/create_zip_glyrics_ext.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node ./scripts/create_zip_glyrics_ext.js",
+    "test": "mocha --recursive"
   },
   "repository": {
     "type": "git",
@@ -29,5 +29,9 @@
     "archiver": "^3.0.0",
     "puppeteer": "^1.11.0",
     "zip-folder": "^1.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0"
   }
 }

@@ -36,3 +36,4 @@ View lyrics in a floating window that remains always on top of other windows
 16. Tidal
 17. Wynk
 18. Groove
+19. YouTube Music

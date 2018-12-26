@@ -24,7 +24,8 @@ var hostNames = [
 	"listen.tidal.com",
 	"wynk.in",
 	"music.microsoft.com",
-	"music.youtube.com"
+	"music.youtube.com",
+	"www.iheart.com"
 ];
 
 /* Create url patterns required to create context menu */

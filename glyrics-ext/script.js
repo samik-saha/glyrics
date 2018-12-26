@@ -302,6 +302,9 @@ function addAutoStyleCSSLink() {
         case "music.youtube.com":
             autoStyleURL = chrome.extension.getURL("ytmusic/ytmusic.css");
             break;
+        case "www.iheart.com":
+            autoStyleURL = chrome.extension.getURL("iheart/iheart.css");
+            break;
     }
     autoStyle.setAttribute("href", autoStyleURL);
     document.body.appendChild(autoStyle);

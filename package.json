@@ -1,0 +1,37 @@
+{
+  "name": "glyrics",
+  "version": "1.0.0",
+  "description": "Gaana Lyrics chrome extension",
+  "main": "",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "build": "node ./scripts/create_zip_glyrics_ext.js",
+    "test": "mocha --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samik-saha/glyrics.git"
+  },
+  "keywords": [
+    "chrome-extension",
+    "lyrics",
+    "nodejs"
+  ],
+  "author": "Samik Saha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samik-saha/glyrics/issues"
+  },
+  "homepage": "https://github.com/samik-saha/glyrics#readme",
+  "dependencies": {
+    "archiver": "^3.0.0",
+    "puppeteer": "^1.11.0",
+    "zip-folder": "^1.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0"
+  }
+}

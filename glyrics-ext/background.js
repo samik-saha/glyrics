@@ -22,9 +22,10 @@ var hostNames = [
 	"deezer.com",
 	"8tracks.com",
 	"listen.tidal.com",
-	"music.wynk.in",
+	"wynk.in",
 	"music.microsoft.com",
-	"music.youtube.com"
+	"music.youtube.com",
+	"www.iheart.com"
 ];
 
 /* Create url patterns required to create context menu */

@@ -3,8 +3,8 @@
 function fetchTrackInfo() {
 	window.songName = "";
 	window.album = "";
-	window.firstArtist = "";
+	window.firstArtist = $('div.songlist-lhs:has(div.song-current) .songlist-info span').text().split("-")[0].trim();
 	window.artists = "";
-	window.songName = $(".content-part .head a").first().text().trim();
-	window.album = $(".content-part .sub a").first().text().trim();
+	window.songName = $('div.songlist-lhs:has(div.song-current) .songlist-info p a').text().trim();
+	window.album = $(".wynk-nplayer-wrap.mob-player-bottom div.nplayerinfo-lhs p span").text().trim();
 }

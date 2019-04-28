@@ -4,7 +4,7 @@
   "name": "Gaana Lyrics Extension",
   "short_name": "GLyrics Extension",
   "description": "Displays lyrics on Gaana.com, Google Music, YouTube Music, Spotify, Pandora, Saavn, SoundCloud and other streaming music services",
-  "version": "4.1.1",
+  "version": "4.2.2",
   "author": "Samik",
   "icons": {
     "16": "images/icon16.png",
@@ -27,6 +27,7 @@
     "default_title": "Show lyrics"
   },
   "permissions": [
+  "*://lyrics.fandom.com/*",
 	"*://lyrics.wikia.com/*",
 	"activeTab",
 	"contextMenus",
@@ -273,7 +274,7 @@
       ]
     },
     {
-      "matches": [ "*://music.wynk.in/*" ],
+      "matches": [ "*://wynk.in/music/*" ],
       "js": [
         "jquery-3.3.1.min.js",
         "jquery-ui.min.js",
@@ -313,6 +314,20 @@
         "css/lyrics.css",
         "css/jquery-ui.min.css"
       ]
+    },
+    {
+      "matches": [ "*://www.iheart.com/*" ],
+      "js": [
+        "jquery-3.3.1.min.js",
+        "jquery-ui.min.js",
+        "script.js",
+        "iheart/extract_track_info.js"
+      ],
+      "run_at": "document_end",
+      "css": [
+        "css/lyrics.css",
+        "css/jquery-ui.min.css"
+      ]
     }
 
   ],
@@ -342,6 +357,7 @@
     "tidal/tidal.css",
     "wynk/wynk.css",
     "groove/groove.css",
-    "ytmusic/ytmusic.css"
+    "ytmusic/ytmusic.css",
+    "iheart/iheart.css"
   ]
 }

@@ -37,3 +37,6 @@ View lyrics in a floating window that remains always on top of other windows
 17. Wynk
 18. Groove
 19. YouTube Music
+
+### Build
+    npm run-script build

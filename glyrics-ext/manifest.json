@@ -4,7 +4,7 @@
   "name": "Gaana Lyrics Extension",
   "short_name": "GLyrics Extension",
   "description": "Displays lyrics on Gaana.com, Google Music, YouTube Music, Spotify, Pandora, Saavn, SoundCloud and other streaming music services",
-  "version": "4.2.1",
+  "version": "4.2.2",
   "author": "Samik",
   "icons": {
     "16": "images/icon16.png",
@@ -27,6 +27,7 @@
     "default_title": "Show lyrics"
   },
   "permissions": [
+  "*://lyrics.fandom.com/*",
 	"*://lyrics.wikia.com/*",
 	"activeTab",
 	"contextMenus",

@@ -16,8 +16,8 @@ function fetchTrackInfo() {
         trackArtist = $('#main').contents().find('#view-now-playing .artist span:first').text().trim();
     }
     else {
-        trackName = $(".track-info .track-info__name:first").text().trim();
-        trackArtist = $(".track-info .track-info__artists:first").text().trim();
+        trackName = $(".now-playing .ellipsis-one-line .ellipsis-one-line:first").text().trim();
+        trackArtist = $(".now-playing .ellipsis-one-line .ellipsis-one-line:last").text().trim();
     }
 
     window.songName = trackName;

@@ -27,7 +27,7 @@
   "homepage": "https://github.com/samik-saha/glyrics#readme",
   "dependencies": {
     "archiver": "^3.0.0",
-    "puppeteer": "^1.11.0",
+    "puppeteer": "^1.13.0",
     "zip-folder": "^1.0.0"
   },
   "devDependencies": {
